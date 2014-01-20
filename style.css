@@ -1,0 +1,120 @@
+html, body {
+	background: url("./textures/wood1.png");
+	color: #333;
+	font-family: 'Open Sans',sans-serif;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+.game {
+    display: none;
+}
+
+#game-title {
+    color: hsl(120,100%,25%);
+    font-size: 2em;
+    font-weight: bold;
+    margin: 1em 0;
+    text-align: center;
+    text-shadow: 0 2px 0 #000, 0 0 10px #000;
+}
+
+#wrapper {
+    margin: 20px auto;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+    width: max-content;
+}
+
+#board {
+    box-shadow: 0 0 3px 1px #000,
+                0 0 10px #000;
+}
+
+#wrapper,
+#board,
+canvas {
+    max-width: 100%;
+}
+
+#board {
+    font-size: 0;
+}
+
+#players-info {
+    background-color: #fff;
+    background-image: linear-gradient(rgba(0,0,0,0) 2%, rgba(0,0,0,.5) 50%, rgba(0,0,0,0) 98%);
+    background-position: calc(50% - 1px);
+    background-size: 1px;
+    background-repeat: no-repeat;
+    font-size: 0;
+    padding: 10px;
+}
+#player0,
+#player1 {
+    display: inline-block;
+    font-size: 1rem;
+    text-align: center;
+    width: 50%;
+}
+.player.plays .name {
+    font-weight: bold;
+}
+
+#menu {
+    min-width: 300px;
+}
+.button {
+    background: hsl(120,100%,20%);
+    border-radius: 3px;
+    box-shadow: 0 0 5px #000 inset;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 1em 0;
+    padding: 1em 0;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.button:hover,
+.button:focus {
+    background: hsl(120,100%,25%);
+    text-decoration: none;
+}
+#menu-link {
+    margin: 1em 0 0 -2em;
+    padding: 0.4em;
+    padding-left: 2.4em;
+    position: absolute;
+        top: 0;
+        left: 0;
+    transition: margin-left .3s;
+}
+#menu-link:hover,
+#menu-link:focus {
+    margin-left: -1.6em;
+    padding-right: .6em;
+}
+
+.dialog {
+    background: hsl(120,40%,20%);
+    border: 3px solid #000;
+    border-radius: 6px;
+    box-shadow: 0 0 5px #000 inset;
+    color: #fff;
+    display: none;
+    max-width: 500px;
+    padding: 20px;
+    position: absolute;
+        top: 10px;
+        right: 10px;
+        bottom: 10px;
+        left: 10px;
+}
+.dialog .button {
+    font-size: 1rem;
+}
