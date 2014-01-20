@@ -55,6 +55,13 @@ UI.prototype.winner = function (id) {
         $("#game-is-over-loser").show();
     }
     ui.showDialog('game-is-over');
+    
+    // Make some menu modifications
+    $("#resume-game").hide();
+    $("#start-game").html("Start game");
+    
+    // Timer
+    ui.updateTimer();
 }
 
 UI.prototype.showMessage = function (message) {
@@ -94,6 +101,23 @@ UI.prototype.startGame = function() {
     // Make some menu modifications
     $("#resume-game").show();
     $("#start-game").html("Start new game");
+    
+    ui.startTimer();
+}
+
+var timer = 0;
+UI.prototype.startTimer = function() {
+    console.log(new Date());
+    timer = new Date();
+    console.log(new Date());
+}
+
+UI.prototype.updateTimer = function() {
+    $("#timer").html(new Date() - timer);
+}
+
+UI.prototype.resumeGame = function() {
+    ui.showGameBoard();
 }
 
 UI.prototype.resumeGame = function() {

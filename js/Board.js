@@ -52,7 +52,7 @@ Board.prototype.recalculateSizes = function (width, height) {
 // Return x,y position cell
 Board.prototype.draw = function () {
     if (this.toBePainted) {
-        ctx.fillStyle = "rgb(0,45,0)";
+        ctx.fillStyle = "rgb(0,50,0)";
         ctx.fillRect (0, 0, this.cellColumns*this.cellWidth, this.cellRows*this.cellHeight);
         
         for (var i = 0; i < board.cellRows; i++) {

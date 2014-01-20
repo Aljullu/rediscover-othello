@@ -17,28 +17,52 @@ Cell.prototype.draw = function () {
     
     // Draw green board
     function drawBoard(ctx, x1, y1, x2, y2) {
+        /*if (Math.abs(scope.x - scope.y) % 2 === 0) {
+            ctx.fillStyle = "rgb(0,50,0)";
+        }
+        else {
+            ctx.fillStyle = "rgb(0,47,0)";
+        }*/
         ctx.fillStyle = "rgb(0,50,0)";
         
         ctx.fillRect (x1, y1, x2, y2);
     }
     
+    //TODO x2 => sizeX, y2 => sizeY
     // Draw mouse over
     function drawMouseOver(ctx, x1, y1, x2, y2) {
-        if (scope.canPlayerPlay( 1 )) // correct position
-            ctx.fillStyle = "rgb(0,50,100)";
-        else // not correct position
-            ctx.fillStyle = "rgb(100,50,0)";
         
-        ctx.fillRect (x1, y1, x2, y2);
+        var grd = ctx.createRadialGradient(x1, y1, 0, x1 + x2, y1 + y2, 100);
+        
+        if (scope.canPlayerPlay( 1 )) { // correct position
+            grd.addColorStop(0, 'rgb(25,75,125)');
+            grd.addColorStop(1, 'rgb(0,50,100)');
+        }
+        else { // not correct position
+            grd.addColorStop(0, 'rgb(125,75,25)');
+            grd.addColorStop(1, 'rgb(100,50,0)');
+        }
+        
+        ctx.fillStyle = grd;
+        ctx.fillRect(x1, y1, x2, y2);
     }
     
     // Draw mouse over
     function drawPlayer(ctx, x1c, y1c, radius) {
-            if (scope.state === 1) ctx.fillStyle = "rgb(255,255,255)"; // white player
-            else ctx.fillStyle = "rgb(0,0,0)"; // black player
-            
+            var grd = ctx.createRadialGradient(x1c, y1c, 0, x1c + radius*2, y1c + radius*2, 100);
+        
+            if (scope.state === 1) { // white player
+                  grd.addColorStop(0, '#aaa');
+                  grd.addColorStop(1, '#fff');
+            }
+            else { // black player
+                  grd.addColorStop(0, '#000');
+                  grd.addColorStop(1, '#444');
+            }
+        
+            ctx.fillStyle = grd;
             ctx.beginPath();
-            ctx.arc(x1c, y1c, radius, 0, Math.PI*2);
+            ctx.arc(x1c-1, y1c-1, radius - radius/8, 0, Math.PI*2);
             ctx.fill();
             ctx.stroke();
     }
