@@ -9,16 +9,6 @@ var PlayerLearned = function() {
     // Learned from PlayerLearning.js using target function method
     this.weights = new Array(3);
     this.weights[0] = new Array(2);
-    this.weights[0][0] = 1;
-    this.weights[0][1] = -1;
-    this.weights[1] = new Array(2);
-    this.weights[1][0] = 0;
-    this.weights[1][1] = 0;
-    this.weights[2] = new Array(2);
-    this.weights[2][0] = 0;
-    this.weights[2][1] = 0;
-    
-    /*this.weights[0] = new Array(2);
     this.weights[0][0] = 618;
     this.weights[0][1] = 261;
     this.weights[1] = new Array(2);
@@ -26,7 +16,7 @@ var PlayerLearned = function() {
     this.weights[1][1] = 58;
     this.weights[2] = new Array(2);
     this.weights[2][0] = 29;
-    this.weights[2][1] = 2;*/
+    this.weights[2][1] = 2;
 };
 
 PlayerLearned.prototype.play = function ( ) {
@@ -53,7 +43,7 @@ PlayerLearned.prototype.play = function ( ) {
                                        boardTmp.getBorderCellsByPlayer(scope.opponentid) * scope.weights[1][1] +
                                        boardTmp.get4BorderCellsByPlayer(scope.id) * scope.weights[2][0] +
                                        boardTmp.get4BorderCellsByPlayer(scope.opponentid) * scope.weights[2][1];
-                        console.log(bestAdvantage,advantageTmp);
+                    
                     if (
                         (bestx === -1 && besty === -1) ||
                         (advantageTmp > bestAdvantage/* &&

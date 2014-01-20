@@ -113,7 +113,6 @@ UI.prototype.showGameBoard = function() {
 }
 
 UI.prototype.showDialog = function(dialog) {
-    alert("hola");
     $("#"+dialog).show();
 }
 

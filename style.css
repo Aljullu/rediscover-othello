@@ -1,5 +1,5 @@
 html, body {
-	background: url("./textures/wood1.png");
+	background: #ccc;
 	color: #333;
 	font-family: 'Open Sans',sans-serif;
 	margin: 0;
@@ -107,7 +107,6 @@ canvas {
     box-shadow: 0 0 5px #000 inset;
     color: #fff;
     display: none;
-    max-width: 500px;
     padding: 20px;
     position: absolute;
         top: 10px;
