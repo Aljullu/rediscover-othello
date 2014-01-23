@@ -27,7 +27,7 @@ UI.prototype.setScore = function (id, score) {
 }
 
 UI.prototype.writeScore = function (id) {
-    $("#player"+id+" .score").html(this.playerScores[id]);
+    $(".player"+id+"-score").html(this.playerScores[id]);
 }
 
 UI.prototype.newScore = function (id, score) {
@@ -113,7 +113,7 @@ UI.prototype.startTimer = function() {
 }
 
 UI.prototype.updateTimer = function() {
-    $("#timer").html(new Date() - timer);
+    $("#timer").html(Math.round((new Date() - timer)/1000));
 }
 
 UI.prototype.resumeGame = function() {

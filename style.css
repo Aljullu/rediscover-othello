@@ -5,6 +5,7 @@ html, body {
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
+    text-shadow: 3px 3px 10px #000;
 }
 
 .game {
@@ -79,6 +80,7 @@ canvas {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+    text-shadow: none;
 }
 .button:hover,
 .button:focus {
@@ -116,4 +118,27 @@ canvas {
 }
 .dialog .button {
     font-size: 1rem;
+    margin: 0 auto;
+    padding: 1em;
+        width: -moz-max-content;
+    width: max-content;
+}
+
+#game-is-over {
+    text-align: center;
+}
+#game-is-over .score {
+    font-size: 6em;
+}
+
+
+@media (min-width: 916px) {
+	#board {
+		float: left;
+	}
+    #players-info {
+        float: right;
+        margin-left: 20px;
+        width: 400px;
+    }
 }

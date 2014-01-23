@@ -20,22 +20,26 @@
             <div id="players-info" class="game">
                 <div id="player0" class="player">
                     <div class="name"></div>
-                    <div class="score"></div>
+                    <div class="player0-score score"></div>
                 </div>
                 <div id="player1" class="player">
                     <div class="name"></div>
-                    <div class="score"></div>
+                    <div class="player1-score score"></div>
                 </div>
             </div>
             <div id="game-is-over" class="dialog">
                 <div id="game-is-over-winner">
-                    <p>You won!</p>
+                    <h1>You won!</h1>
                 </div>
                 <div id="game-is-over-loser">
                     <p>You lost!</p>
                 </div>
-                <p>Time game: <span id="timer"></span> seconds.</p>
+                <div class="score">
+                    <span class="player0-score">0</span>-<span class="player1-score">0</span>
+                </div>
+                <p><span id="timer"></span> seconds</p>
                 <a href="javascript:ui.startGame()" class="button">Play again</a>
+                <a  href="javascript:ui.showMenu()" class="button">Back to menu</a>
             </div>
             <div id="preferences" class="dialog">
                 Preferences!

@@ -23,7 +23,7 @@ PlayerLearned.prototype.play = function ( ) {
     
     var scope = this;
     
-    setTimeout(makePlay, 100);
+    setTimeout(makePlay, 500);
     
     function makePlay () {
         var bestx = -1;
