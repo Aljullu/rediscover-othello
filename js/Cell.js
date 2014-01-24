@@ -30,7 +30,6 @@ Cell.prototype.draw = function () {
     
     // Draw mouse over
     function drawMouseOver(ctx, x1, y1, sizeX, sizeY) {
-        
         var grd = ctx.createRadialGradient(x1, y1, 0, x1 + sizeX, y1 + sizeY, 100);
         
         if (scope.canPlayerPlay( 1 )) { // correct position
@@ -76,12 +75,23 @@ Cell.prototype.draw = function () {
         var sizeX = this.board.cellWidth - this.board.cellBorder*2;
         var sizeY = this.board.cellHeight - this.board.cellBorder*2;
         
+        // Purge decimals
+        x1 = Math.ceil(x1);
+        y1 = Math.ceil(y1);
+        sizeX = Math.floor(sizeX);
+        sizeY = Math.floor(sizeY);
+        
         drawBoard(ctx, x1, y1, sizeX, sizeY);
         if (this.over) drawMouseOver(ctx, x1, y1, sizeX, sizeY);
         
+        // Draw players
         if (this.state > 0) {
+            
+            // Calculate cell center
             var x1c = this.board.cellWidth*(this.x+.5);
             var y1c = this.board.cellHeight*(this.y+.5);
+            
+            // Calculate radius
             var radius = (this.board.cellWidth - this.board.cellBorder*2)/2;
             drawPlayer(ctx, x1c, y1c, radius);
         }
@@ -225,7 +235,7 @@ Cell.prototype.propagate = function ( player, direction, step ) {
         setTimeout(function(){
             sounds.stoneFlipping();
             scope.draw();
-        }, 25 * step + 50);
+        }, 50 * step + 100);
         step++;
         
         // Propagate
