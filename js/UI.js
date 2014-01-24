@@ -4,6 +4,8 @@ var UI = function() {
     this.playerNames = ["Player 1", "Player 2"];
     this.playerScores = [2,2];
     this.turn = 0;
+    this.offsetLeft = 0;
+    this.offsetTop = 0;
 }
 
 UI.prototype.initialize = function () {
@@ -12,6 +14,7 @@ UI.prototype.initialize = function () {
     ui.writeScore(0);
     ui.writeScore(1);
     ui.markTurn(0);
+    ui.drawBoard();
 }
 
 UI.prototype.setPlayerName = function (id, name) {
@@ -96,7 +99,7 @@ UI.prototype.startGame = function() {
     
     // Show game board
     ui.showGameBoard();
-    calculateOffsets();
+    ui.calculateOffsets();
     
     // Make some menu modifications
     $("#resume-game").show();
@@ -107,9 +110,7 @@ UI.prototype.startGame = function() {
 
 var timer = 0;
 UI.prototype.startTimer = function() {
-    console.log(new Date());
     timer = new Date();
-    console.log(new Date());
 }
 
 UI.prototype.updateTimer = function() {
@@ -133,6 +134,7 @@ UI.prototype.showMenu = function() {
 UI.prototype.showGameBoard = function() {
     $(".no-game").hide();
     $(".dialog").hide();
+    ui.drawBoard();
     $(".game").show();
 }
 
@@ -144,7 +146,25 @@ UI.prototype.hideDialog = function(dialog) {
     $("#"+dialog).hide();
 }
 
-// TODO Should be executed on load
+UI.prototype.drawBoard = function() {
+    if (gameRunning) {
+        var width = Math.min(window.innerWidth, 400), // TODO 400 should not be hardcorded
+            height = Math.min(window.innerHeight, 400),
+            size = Math.min(width, height);
+        
+        if (board) board.recalculateSizes(size, size);
+        ui.newCanvasSize(size, size);
+        ui.calculateOffsets();
+        board.draw();
+    }
+}
+
 UI.prototype.newCanvasSize = function(w,h) {
     $("#board-canvas").attr("height",h).attr("width",w);
+}
+
+// save board offsets to handle mouseover and click properly
+UI.prototype.calculateOffsets = function () {
+    this.offsetLeft = $("#wrapper")[0].offsetLeft;
+    this.offsetTop = $("#wrapper")[0].offsetTop;
 }

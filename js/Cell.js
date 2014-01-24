@@ -16,7 +16,7 @@ Cell.prototype.draw = function () {
     var scope = this;
     
     // Draw green board
-    function drawBoard(ctx, x1, y1, x2, y2) {
+    function drawBoard(ctx, x1, y1, sizeX, sizeY) {
         /*if (Math.abs(scope.x - scope.y) % 2 === 0) {
             ctx.fillStyle = "rgb(0,50,0)";
         }
@@ -25,14 +25,13 @@ Cell.prototype.draw = function () {
         }*/
         ctx.fillStyle = "rgb(0,50,0)";
         
-        ctx.fillRect (x1, y1, x2, y2);
+        ctx.fillRect (x1, y1, sizeX, sizeY);
     }
     
-    //TODO x2 => sizeX, y2 => sizeY
     // Draw mouse over
-    function drawMouseOver(ctx, x1, y1, x2, y2) {
+    function drawMouseOver(ctx, x1, y1, sizeX, sizeY) {
         
-        var grd = ctx.createRadialGradient(x1, y1, 0, x1 + x2, y1 + y2, 100);
+        var grd = ctx.createRadialGradient(x1, y1, 0, x1 + sizeX, y1 + sizeY, 100);
         
         if (scope.canPlayerPlay( 1 )) { // correct position
             grd.addColorStop(0, 'rgb(25,75,125)');
@@ -44,7 +43,7 @@ Cell.prototype.draw = function () {
         }
         
         ctx.fillStyle = grd;
-        ctx.fillRect(x1, y1, x2, y2);
+        ctx.fillRect(x1, y1, sizeX, sizeY);
     }
     
     // Draw mouse over
@@ -62,24 +61,27 @@ Cell.prototype.draw = function () {
         
             ctx.fillStyle = grd;
             ctx.beginPath();
-            ctx.arc(x1c-1, y1c-1, radius - radius/8, 0, Math.PI*2);
+            ctx.arc(x1c, y1c, radius - radius/8, 0, Math.PI*2);
             ctx.fill();
             ctx.stroke();
     }
     
     if (this.board.toBePainted) {
         
+        // Starting point
         var x1 = this.board.cellWidth*this.x + this.board.cellBorder;
         var y1 = this.board.cellHeight*this.y + this.board.cellBorder;
-        var x2 = this.board.cellWidth - this.board.cellBorder*2;
-        var y2 = this.board.cellHeight - this.board.cellBorder*2;
         
-        drawBoard(ctx, x1, y1, x2, y2);
-        if (this.over) drawMouseOver(ctx, x1, y1, x2, y2);
+        // Cell size
+        var sizeX = this.board.cellWidth - this.board.cellBorder*2;
+        var sizeY = this.board.cellHeight - this.board.cellBorder*2;
+        
+        drawBoard(ctx, x1, y1, sizeX, sizeY);
+        if (this.over) drawMouseOver(ctx, x1, y1, sizeX, sizeY);
         
         if (this.state > 0) {
-            var x1c = this.board.cellWidth*(this.x+.5) + this.board.cellBorder;
-            var y1c = this.board.cellHeight*(this.y+.5) + this.board.cellBorder;
+            var x1c = this.board.cellWidth*(this.x+.5);
+            var y1c = this.board.cellHeight*(this.y+.5);
             var radius = (this.board.cellWidth - this.board.cellBorder*2)/2;
             drawPlayer(ctx, x1c, y1c, radius);
         }
@@ -139,28 +141,28 @@ Cell.prototype.playerPlay = function ( playerId ) {
     var maxy = (this.y+1 > this.board.cellRows-1) ? this.board.cellColumns-1 : this.y+1;
     
     if (this.board.cell[minx][this.y].search(playerId, 4))
-        this.board.cell[minx][this.y].propagate(playerId, 4);
+        this.board.cell[minx][this.y].propagate(playerId, 4, 0);
     
     if (this.board.cell[maxx][this.y].search(playerId, 2))
-        this.board.cell[maxx][this.y].propagate(playerId, 2);
+        this.board.cell[maxx][this.y].propagate(playerId, 2, 0);
     
     if (this.board.cell[this.x][miny].search(playerId, 1))
-        this.board.cell[this.x][miny].propagate(playerId, 1);
+        this.board.cell[this.x][miny].propagate(playerId, 1, 0);
     
     if (this.board.cell[this.x][maxy].search(playerId, 3))
-        this.board.cell[this.x][maxy].propagate(playerId, 3);
+        this.board.cell[this.x][maxy].propagate(playerId, 3, 0);
     
     if (this.board.cell[maxx][maxy].search(playerId, 5))
-        this.board.cell[maxx][maxy].propagate(playerId, 5);
+        this.board.cell[maxx][maxy].propagate(playerId, 5, 0);
     
     if (this.board.cell[maxx][miny].search(playerId, 6))
-        this.board.cell[maxx][miny].propagate(playerId, 6);
+        this.board.cell[maxx][miny].propagate(playerId, 6, 0);
     
     if (this.board.cell[minx][miny].search(playerId, 7))
-        this.board.cell[minx][miny].propagate(playerId, 7);
+        this.board.cell[minx][miny].propagate(playerId, 7, 0);
     
     if (this.board.cell[minx][maxy].search(playerId, 8))
-        this.board.cell[minx][maxy].propagate(playerId, 8);
+        this.board.cell[minx][maxy].propagate(playerId, 8, 0);
     
     return true;
 }
@@ -208,51 +210,57 @@ Cell.prototype.search = function ( player, direction ) {
     }
 }
 
-Cell.prototype.propagate = function ( player, direction ) {
+Cell.prototype.propagate = function ( player, direction, step ) {
     
     // Get enemy id
-    var enemy = 2;
-    if (player === 2) enemy = 1;
+    var enemy = (player === 2) ? 1 : 2;
     
     if (this.state === enemy) {
         
         // Change cell data
         this.state = player;
-        this.draw();
+        
+        // Animate it
+        var scope = this;
+        setTimeout(function(){
+            sounds.stoneFlipping();
+            scope.draw();
+        }, 25 * step + 50);
+        step++;
         
         // Propagate
         switch (direction) {
                 case 1:
                         if (this.y-1 < 0) return
-                        this.board.cell[this.x][this.y-1].propagate(player, 1);
+                        this.board.cell[this.x][this.y-1].propagate(player, 1, step);
                     break;
                 case 2:
                         if (this.x+1 > this.board.cellColumns-1) return;
-                        this.board.cell[this.x+1][this.y].propagate(player, 2);
+                        this.board.cell[this.x+1][this.y].propagate(player, 2, step);
                     break;
                 case 3:
                         if (this.y+1 > this.board.cellRows-1) return;
-                        this.board.cell[this.x][this.y+1].propagate(player, 3);
+                        this.board.cell[this.x][this.y+1].propagate(player, 3, step);
                     break;
                 case 4:
                         if (this.x-1 < 0) return;
-                        this.board.cell[this.x-1][this.y].propagate(player, 4);
+                        this.board.cell[this.x-1][this.y].propagate(player, 4, step);
                     break;
                 case 5:
                         if (this.x+1 > this.board.cellColumns-1 || this.y+1 > board.cellRows-1) return;
-                        return this.board.cell[this.x+1][this.y+1].propagate(player, 5);
+                        return this.board.cell[this.x+1][this.y+1].propagate(player, 5, step);
                     break;
                 case 6:
                         if (this.x+1 > this.board.cellColumns-1 || this.y-1 < 0) return;
-                        return this.board.cell[this.x+1][this.y-1].propagate(player, 6);
+                        return this.board.cell[this.x+1][this.y-1].propagate(player, 6, step);
                     break;
                 case 7:
                         if (this.x-1 < 0 || this.y-1 < 0) return;
-                        return this.board.cell[this.x-1][this.y-1].propagate(player, 7);
+                        return this.board.cell[this.x-1][this.y-1].propagate(player, 7, step);
                     break;
                 case 8:
                         if (this.x-1 < 0 || this.y+1 > board.cellRows-1) return;
-                        return this.board.cell[this.x-1][this.y+1].propagate(player, 8);
+                        return this.board.cell[this.x-1][this.y+1].propagate(player, 8, step);
                     break;
         }
     }

@@ -44,7 +44,6 @@ Board.prototype.recalculateSizes = function (width, height) {
 
     this.cellHeight = this.height/this.cellRows;
     this.cellWidth = this.width/this.cellColumns;
-    this.cellBorder = 1;
     
     ui.newCanvasSize(width, height);
 }
