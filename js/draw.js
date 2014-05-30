@@ -15,6 +15,7 @@ var ui = new UI();
 ui.showMenu();
 
 var sounds = new Sounds();
+var preferences = new Preferences();
 
 function doClick(event) {
     if (gameRunning) {

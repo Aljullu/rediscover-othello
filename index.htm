@@ -11,7 +11,7 @@
             <div id="menu" class="no-game" style="display: none;">
                 <a id="resume-game" href="javascript:ui.resumeGame()" style="display: none;" class="button">Resume game</a>
                 <a id="start-game" href="javascript:ui.startGame()" class="button">Start game</a>
-                <a id="start-game" href="javascript:ui.showDialog('preferences')" class="button">Preferences</a>
+                <a id="show-preferences" href="javascript:ui.showPreferences()" class="button">Preferences</a>
             </div>
             <div id="board" class="game">
                 <canvas id="board-canvas" width="400" height="400"></canvas>
@@ -46,14 +46,15 @@
                 <p><label for="preferences-color">Choose your color:</label>
                     <select id="preferences-color">
                         <option value="white" selected>White</option>
-                        <option value="white">Black</option>
+                        <option value="black">Black</option>
                     </select></p>
-                <a href="javascript:ui.hideDialog('preferences')" class="button">Save</a>
+                <a href="javascript:ui.savePreferences()" class="button">Save</a>
             </div>
         </div>
 	</body>
     <script src="http://zeptojs.com/zepto.min.js"></script>
 	<script src="js/UI.js"></script>
+	<script src="js/Preferences.js"></script>
 	<script src="js/Sounds.js"></script>
 	<script src="js/Board.js"></script>
 	<script src="js/Cell.js"></script>

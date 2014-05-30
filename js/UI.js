@@ -168,3 +168,18 @@ UI.prototype.calculateOffsets = function () {
     this.offsetLeft = $("#wrapper")[0].offsetLeft;
     this.offsetTop = $("#wrapper")[0].offsetTop;
 }
+
+UI.prototype.showPreferences = function() {
+    var color = preferences.getSetting('color');
+    $("#preferences-color").val(color);
+    
+    ui.showDialog('preferences');
+}
+
+UI.prototype.savePreferences = function() {
+    ui.hideDialog('preferences');
+    
+    var colorSelect = document.getElementById("preferences-color");
+    var color = colorSelect.options[colorSelect.selectedIndex].value;
+    preferences.saveSetting('color', color);
+}
