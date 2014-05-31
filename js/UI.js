@@ -170,6 +170,10 @@ UI.prototype.showPreferences = function() {
     $("#preferences-color").val(color);
     var start = preferences.getSetting('start');
     $("#preferences-start").val(start);
+    var tableColor = preferences.getSetting('tableColor');
+    $("#preferences-table-color").val(tableColor);
+    var tableBorderColor = preferences.getSetting('tableBorderColor');
+    $("#preferences-table-border-color").val(tableBorderColor);
     
     ui.showDialog('preferences');
 }
@@ -184,4 +188,12 @@ UI.prototype.savePreferences = function() {
     var startSelect = document.getElementById("preferences-start");
     var start = startSelect.options[startSelect.selectedIndex].value;
     preferences.saveSetting('start', start);
+    
+    var tableColorInput = document.getElementById("preferences-table-color");
+    var tableColor = tableColorInput.value;
+    preferences.saveSetting('tableColor', tableColor);
+    
+    var tableBorderColorInput = document.getElementById("preferences-table-border-color");
+    var tableBorderColor = tableBorderColorInput.value;
+    preferences.saveSetting('tableBorderColor', tableBorderColor);
 }

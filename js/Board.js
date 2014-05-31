@@ -15,6 +15,9 @@ var Board = function() {
     this.cellWidth = this.width/this.cellColumns;
     this.cellBorder = 1;
     
+    this.color = preferences.getSetting('tableColor');
+    this.borderColor = preferences.getSetting('tableBorderColor');
+    
     this.cell = new Array(this.cellColumns);
     for (var i = 0; i < this.cellColumns; i++) {
         this.cell[i] = new Array(this.cellRows);
@@ -48,10 +51,9 @@ Board.prototype.recalculateSizes = function (width, height) {
     ui.newCanvasSize(width, height);
 }
 
-// Return x,y position cell
 Board.prototype.draw = function () {
     if (this.toBePainted) {
-        ctx.fillStyle = "rgb(0,45,0)";
+        ctx.fillStyle = this.borderColor;
         ctx.fillRect (0, 0, this.cellColumns*this.cellWidth, this.cellRows*this.cellHeight);
         
         for (var i = 0; i < board.cellRows; i++) {

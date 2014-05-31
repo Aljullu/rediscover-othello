@@ -23,7 +23,7 @@ Cell.prototype.draw = function () {
         else {
             ctx.fillStyle = "rgb(0,47,0)";
         }*/
-        ctx.fillStyle = "rgb(0,50,0)";
+        ctx.fillStyle = board.color;
         
         ctx.fillRect (x1, y1, sizeX, sizeY);
     }
