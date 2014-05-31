@@ -5,8 +5,8 @@
 // 1 player1
 // 2 player2
 var Board = function() {
-    this.cellRows = 8;
-    this.cellColumns = this.cellRows;
+    this.cellRows = preferences.getSetting('cellRows');
+    this.cellColumns = preferences.getSetting('cellColumns');
     
     this.width = 400;
     this.height = 400;
