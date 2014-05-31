@@ -24,7 +24,7 @@ var Board = function() {
         }
     }
     
-    this.playerPlaying = 1;
+    this.playerPlaying = (preferences.getSetting('start') === 'me') ? 1 : 2;
     
     this.toBePainted = false;
 };

@@ -172,6 +172,8 @@ UI.prototype.calculateOffsets = function () {
 UI.prototype.showPreferences = function() {
     var color = preferences.getSetting('color');
     $("#preferences-color").val(color);
+    var start = preferences.getSetting('start');
+    $("#preferences-start").val(start);
     
     ui.showDialog('preferences');
 }
@@ -182,4 +184,8 @@ UI.prototype.savePreferences = function() {
     var colorSelect = document.getElementById("preferences-color");
     var color = colorSelect.options[colorSelect.selectedIndex].value;
     preferences.saveSetting('color', color);
+    
+    var startSelect = document.getElementById("preferences-start");
+    var start = startSelect.options[startSelect.selectedIndex].value;
+    preferences.saveSetting('start', start);
 }
