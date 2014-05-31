@@ -121,10 +121,6 @@ UI.prototype.resumeGame = function() {
     ui.showGameBoard();
 }
 
-UI.prototype.resumeGame = function() {
-    ui.showGameBoard();
-}
-
 UI.prototype.showMenu = function() {
     $(".game").hide();
     $(".dialog").hide();
@@ -134,8 +130,8 @@ UI.prototype.showMenu = function() {
 UI.prototype.showGameBoard = function() {
     $(".no-game").hide();
     $(".dialog").hide();
-    ui.drawBoard();
     $(".game").show();
+    ui.drawBoard();
 }
 
 UI.prototype.showDialog = function(dialog) {
@@ -165,8 +161,8 @@ UI.prototype.newCanvasSize = function(w,h) {
 
 // save board offsets to handle mouseover and click properly
 UI.prototype.calculateOffsets = function () {
-    this.offsetLeft = $("#wrapper")[0].offsetLeft;
-    this.offsetTop = $("#wrapper")[0].offsetTop;
+    this.offsetLeft = $("#board")[0].offsetLeft;
+    this.offsetTop = $("#board")[0].offsetTop;
 }
 
 UI.prototype.showPreferences = function() {
