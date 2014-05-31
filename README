@@ -12,3 +12,5 @@ Roadmap:
     * Choose who starts
 * Make AI async
 * Best scores
+* Beautify code
+* 'tableColor' -> 'boardColor'
