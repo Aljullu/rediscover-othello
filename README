@@ -15,4 +15,3 @@ Roadmap:
 * 'tableColor' -> 'boardColor'
 * Allow odd number of cells
 * Allow different number of rows and columns
-* Rendering problems on 4x4 size
