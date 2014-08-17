@@ -1,5 +1,5 @@
 html, body {
-	background: #ccc;
+	background: #bbb;
 	color: #333;
 	font-family: 'Open Sans',sans-serif;
 	margin: 0;
@@ -100,6 +100,10 @@ canvas {
     color: #fff;
     text-decoration: none;
 }
+.button:active {
+    background: #fff;
+    color: #bbb;
+}
 #menu-link {
     margin: 1em 0 0 -2em;
     padding: 0.4em;
@@ -116,7 +120,7 @@ canvas {
 }
 
 .dialog {
-    background: #ccc;
+    background: #bbb;
     border: 3px solid #ddd;
     border-radius: 16px;
     color: #fff;
@@ -135,34 +139,62 @@ canvas {
     text-align: center;
     text-transform: uppercase;
 }
-.dialog .buttons {
-    text-align: center;
-}
-.dialog .button {
-    display: inline-block;
-    font-size: 1rem;
-    margin: 0 auto;
-    padding: 1em;
-        width: -moz-max-content;
-    width: max-content;
-}
-.dialog label,
-.dialog .label {
-    display: inline-block;
-    width: 50%;
-}
 
 /* Preferences */
-input[type="number"] {
-    width: 40px;
+.preferences-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
 }
-fieldset {
+.preferences-settings {
+    flex: 1 100%;
+}
+.preferences-settings label,
+.preferences-settings .label {
+    display: inline-block;
+    width: 49%;
+}
+.preferences-settings input,
+.preferences-settings select {
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 1000px;
+    box-sizing: border-box;
+    color: #fff;
+    padding: 7px 15px;
+    text-align: center;
+}
+.preferences-settings input[type="number"] {
+    padding: 7px 10px;
+    width: 60px;
+}
+.preferences-settings input[type="color"] {
+    padding: 2px 5px;
+}
+.preferences-settings select {
+    width: 49%;
+}
+.preferences-settings select:active {
+    background: #fff;
+    color: #bbb;
+}
+.preferences-settings fieldset {
     border: 2px solid #ddd;
     border-radius: 10px;
     margin: 0 0 1em;
 }
-.dialog fieldset label {
+.preferences-settings  fieldset label {
     width: 70%;
+}
+.preferences-controls {
+    text-align: center;
+}
+.preferences-controls .button {
+    display: inline-block;
+    font-size: 1rem;
+    margin: 0 3%;
+    padding: 1em 5%;
+    width: 30%;
 }
 
 /* Game over */
