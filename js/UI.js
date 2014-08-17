@@ -125,12 +125,14 @@ UI.prototype.showMenu = function() {
     $(".game").hide();
     $(".dialog").hide();
     $(".no-game").show();
+    $("html").removeClass("playing");
 }
 
 UI.prototype.showGameBoard = function() {
     $(".no-game").hide();
     $(".dialog").hide();
     $(".game").show();
+    $("html").addClass("playing");
     ui.drawBoard();
 }
 
@@ -182,8 +184,12 @@ UI.prototype.showPreferences = function() {
     ui.showDialog('preferences');
 }
 
-UI.prototype.savePreferences = function() {
+UI.prototype.hidePreferences = function() {
     ui.hideDialog('preferences');
+}
+
+UI.prototype.savePreferences = function() {
+    this.hidePreferences();
     
     var colorSelect = document.getElementById("preferences-color");
     var color = colorSelect.options[colorSelect.selectedIndex].value;

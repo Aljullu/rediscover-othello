@@ -5,7 +5,6 @@ html, body {
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
-    text-shadow: 3px 3px 10px #000;
 }
 
 .game {
@@ -13,12 +12,26 @@ html, body {
 }
 
 #game-title {
-    color: hsl(120,100%,25%);
-    font-size: 2em;
+    color: #eee;
+    cursor: default;
+    display: block;
+    font-size: 3em;
     font-weight: bold;
-    margin: 1em 0;
+    margin: 1em 0px;
     text-align: center;
-    text-shadow: 0 2px 0 #000, 0 0 10px #000;
+    text-decoration: none;
+}
+
+.playing #game-title {
+    cursor: pointer;
+    font-size: 2em;
+    padding: 0 30px;
+}
+
+.playing #game-title:hover,
+.playing #game-title:focus,
+.playing #game-title:active {
+    color: #fff;
 }
 
 #wrapper {
@@ -65,12 +78,13 @@ canvas {
 
 #menu {
     min-width: 300px;
+    padding: 0 20px;
 }
 .button {
-    background: hsl(120,100%,20%);
-    border-radius: 3px;
-    box-shadow: 0 0 5px #000 inset;
-    color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 1000px;
+    color: #eee;
     cursor: pointer;
     display: block;
     font-size: 1.5rem;
@@ -80,11 +94,10 @@ canvas {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    text-shadow: none;
 }
 .button:hover,
 .button:focus {
-    background: hsl(120,100%,25%);
+    color: #fff;
     text-decoration: none;
 }
 #menu-link {
@@ -103,10 +116,9 @@ canvas {
 }
 
 .dialog {
-    background: hsl(120,40%,20%);
-    border: 3px solid #000;
-    border-radius: 6px;
-    box-shadow: 0 0 5px #000 inset;
+    background: #ccc;
+    border: 3px solid #ddd;
+    border-radius: 16px;
     color: #fff;
     display: none;
     padding: 20px;
@@ -116,14 +128,44 @@ canvas {
         bottom: 10px;
         left: 10px;
 }
+.dialog h1 {
+    font-size: 1.5em;
+    margin: .5em 0 1em;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+.dialog .buttons {
+    text-align: center;
+}
 .dialog .button {
+    display: inline-block;
     font-size: 1rem;
     margin: 0 auto;
     padding: 1em;
         width: -moz-max-content;
     width: max-content;
 }
+.dialog label,
+.dialog .label {
+    display: inline-block;
+    width: 50%;
+}
 
+/* Preferences */
+input[type="number"] {
+    width: 40px;
+}
+fieldset {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    margin: 0 0 1em;
+}
+.dialog fieldset label {
+    width: 70%;
+}
+
+/* Game over */
 #game-is-over {
     text-align: center;
 }

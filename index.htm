@@ -7,7 +7,7 @@
 	</head>
 	<body>
         <div id="wrapper">
-            <div id="game-title" class="no-game">Rediscover Othello</div>
+            <a id="game-title" href="javascript:ui.showMenu()">Rediscover Othello</a>
             <div id="menu" class="no-game" style="display: none;">
                 <a id="resume-game" href="javascript:ui.resumeGame()" style="display: none;" class="button">Resume game</a>
                 <a id="start-game" href="javascript:ui.startGame()" class="button">Start game</a>
@@ -43,7 +43,7 @@
             </div>
             <div id="preferences" class="dialog">
                 <h1>Preferences</h1>
-                <p><label for="preferences-color">Choose your color:</label>
+                <p><label for="preferences-color">Color:</label>
                     <select id="preferences-color">
                         <option value="white" selected>White</option>
                         <option value="black">Black</option>
@@ -53,13 +53,17 @@
                         <option value="me" selected>Me</option>
                         <option value="opponent">Opponent</option>
                     </select></p>
-                <p>Size: <input type='number' id='preferences-cellRows' min='4'/>x<input type='number' id='preferences-cellColumns' min='4'/></p>
+                <p><span class="label">Size:</span>
+                    <input type='number' id='preferences-cellRows' min='4'/>x<input type='number' id='preferences-cellColumns' min='4'/></p>
                 <fieldset>
                     <legend>Appearance</legend>
                     <p><label for="preferences-table-color">Table color:</label> <input id="preferences-table-color" type="color"/></p>
                     <p><label for="preferences-table-border-color">Table border color:</label> <input id="preferences-table-border-color" type="color"/></p>
                 </fieldset>
-                <a href="javascript:ui.savePreferences()" class="button">Save</a>
+                <div class="buttons">
+                    <a href="javascript:ui.hidePreferences()" class="button">Cancel</a>
+                    <a href="javascript:ui.savePreferences()" class="button">Save</a>
+                </div>
             </div>
         </div>
 	</body>
