@@ -172,10 +172,10 @@ UI.prototype.showPreferences = function() {
     $("#preferences-color").val(color);
     var start = preferences.getSetting('start');
     $("#preferences-start").val(start);
-    var tableColor = preferences.getSetting('tableColor');
-    $("#preferences-table-color").val(tableColor);
-    var tableBorderColor = preferences.getSetting('tableBorderColor');
-    $("#preferences-table-border-color").val(tableBorderColor);
+    var boardColor = preferences.getSetting('boardColor');
+    $("#preferences-table-color").val(boardColor);
+    var boardBorderColor = preferences.getSetting('boardBorderColor');
+    $("#preferences-table-border-color").val(boardBorderColor);
     var cellRows = preferences.getSetting('cellRows');
     $("#preferences-cellRows").val(cellRows);
     var cellColumns = preferences.getSetting('cellColumns');
@@ -199,13 +199,13 @@ UI.prototype.savePreferences = function() {
     var start = startSelect.options[startSelect.selectedIndex].value;
     preferences.saveSetting('start', start);
     
-    var tableColorInput = document.getElementById("preferences-table-color");
-    var tableColor = tableColorInput.value;
-    preferences.saveSetting('tableColor', tableColor);
+    var boardColorInput = document.getElementById("preferences-table-color");
+    var boardColor = boardColorInput.value;
+    preferences.saveSetting('boardColor', boardColor);
     
-    var tableBorderColorInput = document.getElementById("preferences-table-border-color");
-    var tableBorderColor = tableBorderColorInput.value;
-    preferences.saveSetting('tableBorderColor', tableBorderColor);
+    var boardBorderColorInput = document.getElementById("preferences-table-border-color");
+    var boardBorderColor = boardBorderColorInput.value;
+    preferences.saveSetting('boardBorderColor', boardBorderColor);
     
     var cellRowsInput = document.getElementById("preferences-cellRows");
     var cellRows = cellRowsInput.value;

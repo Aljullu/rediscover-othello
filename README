@@ -11,10 +11,10 @@ Roadmap:
 * Best scores
 * Beautify code
 * Allow starting in a different position
-* 'tableColor' -> 'boardColor'
 
 Finished:
 * Preferences
     * Choose color
 * Allow odd number of cells
 * Allow different number of rows and columns
+* 'tableColor' -> 'boardColor'

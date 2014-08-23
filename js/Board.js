@@ -15,8 +15,8 @@ var Board = function() {
     this.cellWidth = this.width/this.cellColumns;
     this.cellBorder = 1;
     
-    this.color = preferences.getSetting('tableColor');
-    this.borderColor = preferences.getSetting('tableBorderColor');
+    this.color = preferences.getSetting('boardColor');
+    this.borderColor = preferences.getSetting('boardBorderColor');
     
     this.cell = new Array(this.cellColumns);
     for (var i = 0; i < this.cellColumns; i++) {
