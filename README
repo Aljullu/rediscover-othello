@@ -7,11 +7,13 @@ Roadmap:
 
 * Add more game modes
 * Improve AI
-* Preferences
-    * Choose color
 * Make AI async
 * Best scores
 * Beautify code
 * 'tableColor' -> 'boardColor'
+
+Finished:
+* Preferences
+    * Choose color
 * Allow odd number of cells
 * Allow different number of rows and columns

@@ -34,10 +34,10 @@ var Board = function() {
 
 // 
 Board.prototype.initialize = function () {
-    this.cell[this.cellColumns/2-1][this.cellRows/2-1].state = 1;
-    this.cell[this.cellColumns/2-1][this.cellRows/2].state = 2;
-    this.cell[this.cellColumns/2][this.cellRows/2-1].state = 2;
-    this.cell[this.cellColumns/2][this.cellRows/2].state = 1;
+    this.cell[Math.floor(this.cellColumns/2-1)][Math.floor(this.cellRows/2-1)].state = 1;
+    this.cell[Math.floor(this.cellColumns/2-1)][Math.floor(this.cellRows/2)].state = 2;
+    this.cell[Math.floor(this.cellColumns/2)][Math.floor(this.cellRows/2-1)].state = 2;
+    this.cell[Math.floor(this.cellColumns/2)][Math.floor(this.cellRows/2)].state = 1;
     ui.initialize();
 }
 
@@ -56,8 +56,8 @@ Board.prototype.draw = function () {
         ctx.fillStyle = this.borderColor;
         ctx.fillRect (0, 0, this.cellColumns*this.cellWidth, this.cellRows*this.cellHeight);
         
-        for (var i = 0; i < board.cellRows; i++) {
-            for (var j = 0; j < board.cellColumns; j++) {
+        for (var i = 0; i < board.cellColumns; i++) {
+            for (var j = 0; j < board.cellRows; j++) {
                this.cell[i][j].draw();
             }
         }
@@ -89,8 +89,8 @@ Board.prototype.updateInfo = function ( ) {
     
     var score1 = 0;
     var score2 = 0;
-    for (var i = 0; i < this.cellRows; i++) {
-        for (var j = 0; j < this.cellColumns; j++) {
+    for (var i = 0; i < this.cellColumns; i++) {
+        for (var j = 0; j < this.cellRows; j++) {
            if (this.cell[i][j].state === 1) score1++;
            else if (this.cell[i][j].state === 2) score2++;
            else areThereFreeCells = true;
@@ -127,8 +127,8 @@ Board.prototype.updateInfo = function ( ) {
 Board.prototype.getAdvantage = function ( player ) {
     var score1 = 0;
     var score2 = 0;
-    for (var i = 0; i < this.cellRows; i++) {
-        for (var j = 0; j < this.cellColumns; j++) {
+    for (var i = 0; i < this.cellColumns; i++) {
+        for (var j = 0; j < this.cellRows; j++) {
            if (this.cell[i][j].state === 1) score1++;
            else if (this.cell[i][j].state === 2) score2++;
         }
@@ -139,8 +139,8 @@ Board.prototype.getAdvantage = function ( player ) {
 }
 
 Board.prototype.canPlayerPlay = function ( playerId ) {
-    for (var i = 0; i < this.cellRows; i++) {
-        for (var j = 0; j < this.cellColumns; j++) {
+    for (var i = 0; i < this.cellColumns; i++) {
+        for (var j = 0; j < this.cellRows; j++) {
            if (this.cell[i][j].canPlayerPlay(playerId)) {
                return true;
            }
@@ -156,7 +156,7 @@ Board.prototype.win = function ( playerId ) {
 Board.prototype.mouseOverCell = function ( x, y ) {
     
     for (var i = 0; i < this.cellColumns; i++) {
-        for (var j = 0; j < this.cellColumns; j++) {
+        for (var j = 0; j < this.cellRows; j++) {
             if (this.cell[i][j].over) {
                 this.cell[i][j].over = false;
                 this.cell[i][j].draw();
@@ -174,7 +174,7 @@ Board.prototype.getCellsByPlayer = function ( playerId ) {
     var counter = 0;
     
     for (var i = 0; i < this.cellColumns; i++) {
-        for (var j = 0; j < this.cellColumns; j++) {
+        for (var j = 0; j < this.cellRows; j++) {
             if (this.cell[i][j].state === playerId) {
                 counter++;
             }
