@@ -10,6 +10,7 @@ Roadmap:
 * Make AI async
 * Best scores
 * Beautify code
+* Allow starting in a different position
 * 'tableColor' -> 'boardColor'
 
 Finished:
