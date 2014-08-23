@@ -11,6 +11,7 @@
             <div id="menu" class="no-game" style="display: none;">
                 <a id="resume-game" href="javascript:ui.resumeGame()" style="display: none;" class="button">Resume game</a>
                 <a id="start-game" href="javascript:ui.startGame()" class="button">Start game</a>
+                <a id="show-best-scores" href="javascript:ui.showBestScores()" class="button">Best scores</a>
                 <a id="show-preferences" href="javascript:ui.showPreferences()" class="button">Preferences</a>
             </div>
             <div id="board" class="game">
@@ -41,12 +42,27 @@
                 <a href="javascript:ui.startGame()" class="button">Play again</a>
                 <a href="javascript:ui.showMenu()" class="button">Back to menu</a>
             </div>
+            <div id="best-scores" class="dialog">
+                <div class="dialog-inner">
+                    <div class="dialog-title">
+                        <h1>Best scores</h1>
+                    </div>
+                    <div class="dialog-body">
+                        <div class="best-scores-empty">There aren't any scores yet</div>
+                        <table class="best-scores-table">
+                        </table>
+                    </div>
+                    <div class="dialog-footer">
+                        <a href="javascript:ui.hideBestScores()" class="button">Cancel</a>
+                    </div>
+                </div>
+            </div>
             <div id="preferences" class="dialog">
-                <div class="preferences-inner">
-                    <div class="preferences-title">
+                <div class="dialog-inner">
+                    <div class="preferences-title dialog-title">
                         <h1>Preferences</h1>
                     </div>
-                    <div class="preferences-settings">
+                    <div class="preferences-settings dialog-body">
                         <p><label for="preferences-color">Color:</label>
                             <select id="preferences-color">
                                 <option value="white" selected>White</option>
@@ -65,7 +81,7 @@
                             <p><label for="preferences-table-border-color">Table border color:</label> <input id="preferences-table-border-color" type="color"/></p>
                         </fieldset>
                     </div>
-                    <div class="preferences-controls">
+                    <div class="preferences-controls dialog-footer">
                         <a href="javascript:ui.hidePreferences()" class="button">Cancel</a>
                         <a href="javascript:ui.savePreferences()" class="button">Save</a>
                     </div>

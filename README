@@ -8,9 +8,10 @@ Roadmap:
 * Add more game modes
 * Improve AI
 * Make AI async
-* Best scores
 * Beautify code
 * Allow starting in a different position
+* Reset preferences
+* If #columns is very different than #rows, it doesn't look good
 
 Finished:
 * Preferences
@@ -18,3 +19,4 @@ Finished:
 * Allow odd number of cells
 * Allow different number of rows and columns
 * 'tableColor' -> 'boardColor'
+* Best scores

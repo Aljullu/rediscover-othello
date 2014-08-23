@@ -143,16 +143,36 @@ canvas {
     text-align: center;
     text-transform: uppercase;
 }
-
-/* Preferences */
-.preferences-inner {
+.dialog-inner {
     display: flex;
     flex-direction: column;
     min-height: 100%;
 }
-.preferences-settings {
+.dialog-body {
     flex: 1 100%;
 }
+.dialog-footer {
+    text-align: center;
+}
+.dialog-footer .button {
+    font-size: 1rem;
+    padding: 1em 5%;
+}
+
+/* Best scores */
+.best-scores-table {
+    text-align: center;
+    width: 100%;
+}
+.best-scores-table th {
+    padding: 5px;
+    text-transform: uppercase;
+}
+.best-scores-table td {
+    padding: 5px;
+}
+
+/* Preferences */
 .preferences-settings label,
 .preferences-settings .label {
     display: inline-block;
@@ -190,14 +210,9 @@ canvas {
 .preferences-settings  fieldset label {
     width: 70%;
 }
-.preferences-controls {
-    text-align: center;
-}
 .preferences-controls .button {
     display: inline-block;
-    font-size: 1rem;
     margin: 0 3%;
-    padding: 1em 5%;
     width: 30%;
 }
 
