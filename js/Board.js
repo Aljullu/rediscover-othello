@@ -18,6 +18,9 @@ var Board = function() {
     this.color = preferences.getSetting('boardColor');
     this.borderColor = preferences.getSetting('boardBorderColor');
     
+    this.startingPointX = preferences.getSetting('startingPointX');
+    this.startingPointY = preferences.getSetting('startingPointY');
+    
     this.cell = new Array(this.cellColumns);
     for (var i = 0; i < this.cellColumns; i++) {
         this.cell[i] = new Array(this.cellRows);
@@ -34,10 +37,27 @@ var Board = function() {
 
 // 
 Board.prototype.initialize = function () {
-    this.cell[Math.floor(this.cellColumns/2-1)][Math.floor(this.cellRows/2-1)].state = 1;
-    this.cell[Math.floor(this.cellColumns/2-1)][Math.floor(this.cellRows/2)].state = 2;
-    this.cell[Math.floor(this.cellColumns/2)][Math.floor(this.cellRows/2-1)].state = 2;
-    this.cell[Math.floor(this.cellColumns/2)][Math.floor(this.cellRows/2)].state = 1;
+    var x,
+        y;
+    if (typeof this.startingPointX !== "undefined" && this.startingPointX !== null) {
+        x = Math.max(this.startingPointX, 0);
+        x = Math.min(x, this.cellColumns - 2);
+    }
+    else {
+        x = this.cellColumns/2;
+    }
+    if (typeof this.startingPointY !== "undefined" && this.startingPointY !== null) {
+        y = Math.max(this.startingPointY, 0);
+        y = Math.min(y, this.cellRows - 2);
+    }
+    else {
+        y = this.cellRows/2;
+    }
+    // Don't allow values outside the scope
+    this.cell[Math.floor(x)][Math.floor(y)].state = 1;
+    this.cell[Math.floor(x)][Math.floor(y+1)].state = 2;
+    this.cell[Math.floor(x+1)][Math.floor(y)].state = 2;
+    this.cell[Math.floor(x+1)][Math.floor(y+1)].state = 1;
     ui.initialize();
 }
 

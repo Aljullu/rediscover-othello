@@ -74,7 +74,9 @@
                                 <option value="opponent">Opponent</option>
                             </select></p>
                         <p><span class="label">Size:</span>
-                            <input type='number' id='preferences-cellRows' min='4'/>x<input type='number' id='preferences-cellColumns' min='4'/></p>
+                            <input type='number' id='preferences-cellRows' min='4'/> x <input type='number' id='preferences-cellColumns' min='4'/></p>
+                        <p><label><input type="checkbox" id="different-starting-point"/> Not centered starting point</label>
+                            <span id='preferences-startingPoint' class='hidden'><input type='number' id='preferences-startingPointX' min='0'/> x <input type='number' id='preferences-startingPointY' min='0'/></span></p>
                         <fieldset>
                             <legend>Appearance</legend>
                             <p><label for="preferences-table-color">Table color:</label> <input id="preferences-table-color" type="color"/></p>

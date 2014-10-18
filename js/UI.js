@@ -233,6 +233,14 @@ UI.prototype.showPreferences = function() {
     $("#preferences-cellRows").val(cellRows);
     var cellColumns = preferences.getSetting('cellColumns');
     $("#preferences-cellColumns").val(cellColumns);
+    var startingPointX = preferences.getSetting('startingPointX');
+    $("#preferences-startingPointX").val(startingPointX);
+    var startingPointY = preferences.getSetting('startingPointY');
+    $("#preferences-startingPointY").val(startingPointY);
+    
+    ui.updateStartingPointVisualization();
+    
+    $("#different-starting-point").change(ui.updateStartingPointVisualization);
     
     ui.showDialog('preferences');
 }
@@ -267,4 +275,32 @@ UI.prototype.savePreferences = function() {
     var cellColumnsInput = document.getElementById("preferences-cellColumns");
     var cellColumns = cellColumnsInput.value;
     preferences.saveSetting('cellColumns', cellColumns);
+    
+    var startingPointXInput = document.getElementById("preferences-startingPointX");
+    var startingPointX = startingPointXInput.value;
+    preferences.saveSetting('startingPointX', startingPointX);
+    
+    var startingPointYInput = document.getElementById("preferences-startingPointY");
+    var startingPointY = startingPointYInput.value;
+    preferences.saveSetting('startingPointY', startingPointY);
+    
+    if (!$("#different-starting-point").is(":checked")) {
+        preferences.saveSetting('startingPointX', null);
+        preferences.saveSetting('startingPointY', null);
+    }
+}
+
+UI.prototype.updateStartingPointVisualization = function() {
+    if ($("#different-starting-point").is(":checked")) {
+        $("#preferences-startingPoint").removeClass("hidden");
+        if ($("#preferences-startingPointX").val() === "") {
+            $("#preferences-startingPointX").val(Math.floor($("#preferences-cellRows").val() / 2));
+        }
+        if ($("#preferences-startingPointY").val() === "") {
+            $("#preferences-startingPointY").val(Math.floor($("#preferences-cellColumns").val() / 2));
+        }
+    }
+    else {
+        $("#preferences-startingPoint").addClass("hidden");
+    }
 }
