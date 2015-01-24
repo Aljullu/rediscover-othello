@@ -4,23 +4,25 @@
 // 0 empty
 // 1 player1
 // 2 player2
-var Board = function() {
-    this.cellRows = preferences.getSetting('cellRows');
-    this.cellColumns = preferences.getSetting('cellColumns');
-    
+var Board = function(mapSettings) {
+    this.cellRows = (mapSettings.cellRows) ? mapSettings.cellRows : preferences.getSetting('cellRows');
+    this.cellColumns = (mapSettings.cellColumns) ? mapSettings.cellColumns : preferences.getSetting('cellColumns');
+
     this.width = 400;
     this.height = 400;
 
     this.cellHeight = this.height/this.cellRows;
     this.cellWidth = this.width/this.cellColumns;
     this.cellBorder = 1;
-    
-    this.color = preferences.getSetting('boardColor');
-    this.borderColor = preferences.getSetting('boardBorderColor');
-    
-    this.startingPointX = preferences.getSetting('startingPointX');
-    this.startingPointY = preferences.getSetting('startingPointY');
-    
+
+    this.color = (mapSettings.color) ? mapSettings.color : preferences.getSetting('boardColor');
+    this.borderColor = (mapSettings.borderColor) ? mapSettings.borderColor : preferences.getSetting('boardBorderColor');
+
+    this.startingPointX = (mapSettings.startingPointX) ? mapSettings.startingPointX : preferences.getSetting('startingPointX');
+    this.startingPointY = (mapSettings.startingPointY) ? mapSettings.startingPointY : preferences.getSetting('startingPointY');
+};
+
+Board.prototype.initialize = function () {
     this.cell = new Array(this.cellColumns);
     for (var i = 0; i < this.cellColumns; i++) {
         this.cell[i] = new Array(this.cellRows);
@@ -33,10 +35,7 @@ var Board = function() {
     this.playerPlaying = (preferences.getSetting('start') === 'me') ? 1 : 2;
     
     this.toBePainted = false;
-};
 
-// 
-Board.prototype.initialize = function () {
     var x,
         y;
     if (typeof this.startingPointX !== "undefined" && this.startingPointX !== null) {
@@ -44,20 +43,21 @@ Board.prototype.initialize = function () {
         x = Math.min(x, this.cellColumns - 2);
     }
     else {
-        x = this.cellColumns/2;
+        x = this.cellColumns/2 - 1;
     }
     if (typeof this.startingPointY !== "undefined" && this.startingPointY !== null) {
         y = Math.max(this.startingPointY, 0);
         y = Math.min(y, this.cellRows - 2);
     }
     else {
-        y = this.cellRows/2;
+        y = this.cellRows/2 - 1;
     }
     // Don't allow values outside the scope
     this.cell[Math.floor(x)][Math.floor(y)].state = 1;
     this.cell[Math.floor(x)][Math.floor(y+1)].state = 2;
     this.cell[Math.floor(x+1)][Math.floor(y)].state = 2;
     this.cell[Math.floor(x+1)][Math.floor(y+1)].state = 1;
+
     ui.initialize();
 }
 
@@ -252,8 +252,8 @@ Board.prototype.get4BorderCellsByPlayer = function ( playerId ) {
 
 Board.prototype.clone = function ( ) {
     
-    var newBoard = new Board();
-    
+    var newBoard = new Board([]);
+
     newBoard.cellRows = this.cellRows;
     newBoard.cellColumns = this.cellColumns;
 

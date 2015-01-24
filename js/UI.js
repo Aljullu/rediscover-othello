@@ -119,7 +119,43 @@ UI.prototype.startGame = function() {
     ctx = canvas.getContext('2d');
     
     // Create game stuff
-    board = new Board();
+    var map = './maps/map001.csv';
+    var mapSettings = [];
+
+    if (typeof map !== 'undefined' && map) {
+        $.ajax({
+            url: map,
+            success: function(response) {
+                var responseArray = response.split('\n');
+                for (var i = 0; i < responseArray.length; i++) {
+                    responseArray[i] = responseArray[i].split(',');
+                }
+                
+                for (var i = 0; i < responseArray.length; i++) {
+                    if (responseArray[i][0] === 'size') {
+                        mapSettings.cellRows = responseArray[i][1];
+                        mapSettings.cellColumns = responseArray[i][2];
+                    }
+                    else if (responseArray[i][0] === 'color') {
+                        mapSettings.color = responseArray[i][1];
+                        mapSettings.borderColor = responseArray[i][2];
+                    }
+                    else if (responseArray[i][0] === 'startingPoint') {
+                        mapSettings.startingPointX = responseArray[i][1];
+                        mapSettings.startingPointY = responseArray[i][2];
+                    }
+                }
+                ui.startMap(mapSettings);
+            }
+        });
+    }
+    else {
+        ui.startMap(mapSettings);
+    }
+}
+
+UI.prototype.startMap = function(mapSettings) {
+    board = new Board(mapSettings);
     board.initialize();
     board.toBePainted = true;
     board.draw();

@@ -11,6 +11,7 @@ Roadmap:
 * Beautify code
 * Reset preferences
 * If #columns is very different than #rows, it doesn't look good
+* Load maps from file
 
 Finished:
 * Preferences
