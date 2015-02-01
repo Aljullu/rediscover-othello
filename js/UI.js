@@ -108,6 +108,30 @@ var opponent;
 var firstGame = true;
 var board;
 
+UI.prototype.parseFile = function(response) {
+    var responseArray = response.split('\n'),
+        mapSettings = [];
+    for (var i = 0; i < responseArray.length; i++) {
+        responseArray[i] = responseArray[i].split(',');
+    }
+
+    for (var i = 0; i < responseArray.length; i++) {
+        if (responseArray[i][0] === 'size') {
+            mapSettings.cellRows = responseArray[i][1];
+            mapSettings.cellColumns = responseArray[i][2];
+        }
+        else if (responseArray[i][0] === 'color') {
+            mapSettings.color = responseArray[i][1];
+            mapSettings.borderColor = responseArray[i][2];
+        }
+        else if (responseArray[i][0] === 'startingPoint') {
+            mapSettings.startingPointX = responseArray[i][1];
+            mapSettings.startingPointY = responseArray[i][2];
+        }
+    }
+    return mapSettings;
+}
+
 UI.prototype.startGame = function() {
     // Set flag to true
     gameRunning = true;
@@ -119,38 +143,25 @@ UI.prototype.startGame = function() {
     ctx = canvas.getContext('2d');
     
     // Create game stuff
-    var map = './maps/map001.csv';
-    var mapSettings = [];
+    var debug = true;
 
-    if (typeof map !== 'undefined' && map) {
-        $.ajax({
-            url: map,
-            success: function(response) {
-                var responseArray = response.split('\n');
-                for (var i = 0; i < responseArray.length; i++) {
-                    responseArray[i] = responseArray[i].split(',');
+    if (debug) {
+        if (debug) {
+            var mapCode = 'size,12,12\nstartingPoint,1,1\ncolor,#fff,#000';
+            ui.startMap(ui.parseFile(mapCode));
+        }
+        else {
+            var map = './maps/map001.csv';
+            $.ajax({
+                url: map,
+                success: function(response) {
+                    ui.startMap(ui.parseFile(response));
                 }
-                
-                for (var i = 0; i < responseArray.length; i++) {
-                    if (responseArray[i][0] === 'size') {
-                        mapSettings.cellRows = responseArray[i][1];
-                        mapSettings.cellColumns = responseArray[i][2];
-                    }
-                    else if (responseArray[i][0] === 'color') {
-                        mapSettings.color = responseArray[i][1];
-                        mapSettings.borderColor = responseArray[i][2];
-                    }
-                    else if (responseArray[i][0] === 'startingPoint') {
-                        mapSettings.startingPointX = responseArray[i][1];
-                        mapSettings.startingPointY = responseArray[i][2];
-                    }
-                }
-                ui.startMap(mapSettings);
-            }
-        });
+            });
+        }
     }
     else {
-        ui.startMap(mapSettings);
+        ui.startMap([]);
     }
 }
 
