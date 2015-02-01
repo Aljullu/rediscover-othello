@@ -1,105 +1,123 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<link rel="stylesheet" href="./style.css" />
-		<meta charset="utf-8" />
-		<title>Rediscover Othello</title>
-	</head>
-	<body>
-        <div id="wrapper">
-            <a id="game-title" href="javascript:ui.showMenu()">Rediscover Othello</a>
-            <div id="menu" class="no-game" style="display: none;">
-                <a id="resume-game" href="javascript:ui.resumeGame()" style="display: none;" class="button">Resume game</a>
-                <a id="start-game" href="javascript:ui.startGame()" class="button">Start game</a>
-                <a id="show-best-scores" href="javascript:ui.showBestScores()" class="button">Best scores</a>
-                <a id="show-preferences" href="javascript:ui.showPreferences()" class="button">Preferences</a>
+
+<head>
+    <link rel="stylesheet" href="./style.css" />
+    <meta charset="utf-8" />
+    <title>Rediscover Othello</title>
+</head>
+
+<body>
+    <div id="wrapper">
+        <a id="game-title" href="javascript:ui.showMenu()">Rediscover Othello</a>
+        <div id="menu" class="no-game" style="display: none;">
+            <a id="resume-game" href="javascript:ui.resumeGame()" style="display: none;" class="button">Resume game</a>
+            <a id="start-game" href="javascript:ui.startGame()" class="button">Start game</a>
+            <a id="show-best-scores" href="javascript:ui.showBestScores()" class="button">Best scores</a>
+            <a id="show-preferences" href="javascript:ui.showPreferences()" class="button">Preferences</a>
+        </div>
+        <div id="board" class="game">
+            <canvas id="board-canvas" width="400" height="400"></canvas>
+            <a id="menu-link" href="javascript:ui.showMenu()" title="Open menu" class="button"><i class="fa fa-bars"></i></a>
+        </div>
+        <div id="players-info" class="game">
+            <div id="player0" class="player">
+                <div class="name"></div>
+                <div class="player0-score score"></div>
             </div>
-            <div id="board" class="game">
-                <canvas id="board-canvas" width="400" height="400"></canvas>
-                <a id="menu-link" href="javascript:ui.showMenu()" title="Open menu" class="button"><i class="fa fa-bars"></i></a>
+            <div id="player1" class="player">
+                <div class="name"></div>
+                <div class="player1-score score"></div>
             </div>
-            <div id="players-info" class="game">
-                <div id="player0" class="player">
-                    <div class="name"></div>
-                    <div class="player0-score score"></div>
-                </div>
-                <div id="player1" class="player">
-                    <div class="name"></div>
-                    <div class="player1-score score"></div>
-                </div>
+        </div>
+        <div id="game-is-over" class="dialog">
+            <div id="game-is-over-winner">
+                <h1>You won!</h1>
             </div>
-            <div id="game-is-over" class="dialog">
-                <div id="game-is-over-winner">
-                    <h1>You won!</h1>
-                </div>
-                <div id="game-is-over-loser">
-                    <p>You lost!</p>
-                </div>
-                <div class="score">
-                    <span class="player0-score">0</span>-<span class="player1-score">0</span>
-                </div>
-                <p><span id="timer"></span> seconds</p>
-                <a href="javascript:ui.startGame()" class="button">Play again</a>
-                <a href="javascript:ui.showMenu()" class="button">Back to menu</a>
+            <div id="game-is-over-loser">
+                <p>You lost!</p>
             </div>
-            <div id="best-scores" class="dialog">
-                <div class="dialog-inner">
-                    <div class="dialog-title">
-                        <h1>Best scores</h1>
-                    </div>
-                    <div class="dialog-body">
-                        <div class="best-scores-empty">There aren't any scores yet</div>
-                        <table class="best-scores-table">
-                        </table>
-                    </div>
-                    <div class="dialog-footer">
-                        <a href="javascript:ui.hideBestScores()" class="button">Cancel</a>
-                    </div>
-                </div>
+            <div class="score">
+                <span class="player0-score">0</span>-<span class="player1-score">0</span>
             </div>
-            <div id="preferences" class="dialog">
-                <div class="dialog-inner">
-                    <div class="preferences-title dialog-title">
-                        <h1>Preferences</h1>
-                    </div>
-                    <div class="preferences-settings dialog-body">
-                        <p><label for="preferences-color">Color:</label>
-                            <select id="preferences-color">
-                                <option value="white" selected>White</option>
-                                <option value="black">Black</option>
-                            </select></p>
-                        <p><label for="preferences-start">Who starts:</label>
-                            <select id="preferences-start">
-                                <option value="me" selected>Me</option>
-                                <option value="opponent">Opponent</option>
-                            </select></p>
-                        <p><span class="label">Size:</span>
-                            <input type='number' id='preferences-cellRows' min='4'/> x <input type='number' id='preferences-cellColumns' min='4'/></p>
-                        <p><label><input type="checkbox" id="different-starting-point"/> Not centered starting point</label>
-                            <span id='preferences-startingPoint' class='hidden'><input type='number' id='preferences-startingPointX' min='0'/> x <input type='number' id='preferences-startingPointY' min='0'/></span></p>
-                        <fieldset>
-                            <legend>Appearance</legend>
-                            <p><label for="preferences-table-color">Table color:</label> <input id="preferences-table-color" type="color"/></p>
-                            <p><label for="preferences-table-border-color">Table border color:</label> <input id="preferences-table-border-color" type="color"/></p>
-                        </fieldset>
-                    </div>
-                    <div class="preferences-controls dialog-footer">
-                        <a href="javascript:ui.hidePreferences()" class="button">Cancel</a>
-                        <a href="javascript:ui.savePreferences()" class="button">Save</a>
-                    </div>
+            <p><span id="timer"></span> seconds</p>
+            <a href="javascript:ui.startGame()" class="button">Play again</a>
+            <a href="javascript:ui.showMenu()" class="button">Back to menu</a>
+        </div>
+        <div id="best-scores" class="dialog">
+            <div class="dialog-inner">
+                <div class="dialog-title">
+                    <h1>Best scores</h1>
+                </div>
+                <div class="dialog-body">
+                    <div class="best-scores-empty">There aren't any scores yet</div>
+                    <table class="best-scores-table">
+                    </table>
+                </div>
+                <div class="dialog-footer">
+                    <a href="javascript:ui.hideBestScores()" class="button">Cancel</a>
                 </div>
             </div>
         </div>
-	</body>
-    <script src="http://zeptojs.com/zepto.min.js"></script>
-	<script src="js/UI.js"></script>
-	<script src="js/Preferences.js"></script>
-	<script src="js/Sounds.js"></script>
-	<script src="js/Board.js"></script>
-	<script src="js/Cell.js"></script>
-	<script src="js/Player.js"></script>
-	<script src="js/PlayerLearned.js"></script>
-	<script src="js/PlayerLearning.js"></script>
-	<script src="js/draw.js"></script>
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <div id="preferences" class="dialog">
+            <div class="dialog-inner">
+                <div class="preferences-title dialog-title">
+                    <h1>Preferences</h1>
+                </div>
+                <div class="preferences-settings dialog-body">
+                    <p>
+                        <label for="preferences-color">Color:</label>
+                        <select id="preferences-color">
+                            <option value="white" selected>White</option>
+                            <option value="black">Black</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="preferences-start">Who starts:</label>
+                        <select id="preferences-start">
+                            <option value="me" selected>Me</option>
+                            <option value="opponent">Opponent</option>
+                        </select>
+                    </p>
+                    <p><span class="label">Size:</span>
+                        <input type='number' id='preferences-cellRows' min='4' /> x
+                        <input type='number' id='preferences-cellColumns' min='4' />
+                    </p>
+                    <p>
+                        <label>
+                            <input type="checkbox" id="different-starting-point" /> Not centered starting point</label>
+                        <span id='preferences-startingPoint' class='hidden'><input type='number' id='preferences-startingPointX' min='0'/> x <input type='number' id='preferences-startingPointY' min='0'/></span>
+                    </p>
+                    <fieldset>
+                        <legend>Appearance</legend>
+                        <p>
+                            <label for="preferences-table-color">Table color:</label>
+                            <input id="preferences-table-color" type="color" />
+                        </p>
+                        <p>
+                            <label for="preferences-table-border-color">Table border color:</label>
+                            <input id="preferences-table-border-color" type="color" />
+                        </p>
+                    </fieldset>
+                </div>
+                <div class="preferences-controls dialog-footer">
+                    <a href="javascript:ui.hidePreferences()" class="button">Cancel</a>
+                    <a href="javascript:ui.savePreferences()" class="button">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="http://zeptojs.com/zepto.min.js"></script>
+<script src="js/UI.js"></script>
+<script src="js/Preferences.js"></script>
+<script src="js/Sounds.js"></script>
+<script src="js/Board.js"></script>
+<script src="js/Cell.js"></script>
+<script src="js/Player.js"></script>
+<script src="js/PlayerLearned.js"></script>
+<script src="js/PlayerLearning.js"></script>
+<script src="js/draw.js"></script>
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
 </html>

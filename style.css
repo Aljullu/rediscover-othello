@@ -1,10 +1,11 @@
-html, body {
-	background: #bbb;
-	color: #333;
-	font-family: 'Open Sans',sans-serif;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
+html,
+body {
+    background: #bbb;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
 }
 
 body {
@@ -50,8 +51,7 @@ body {
 }
 
 #board {
-    box-shadow: 0 0 3px 1px #000,
-                0 0 10px #000;
+    box-shadow: 0 0 3px 1px #000, 0 0 10px #000;
 }
 
 #wrapper,
@@ -66,13 +66,14 @@ canvas {
 
 #players-info {
     background-color: #fff;
-    background-image: linear-gradient(rgba(0,0,0,0) 2%, rgba(0,0,0,.5) 50%, rgba(0,0,0,0) 98%);
+    background-image: linear-gradient(rgba(0, 0, 0, 0) 2%, rgba(0, 0, 0, .5) 50%, rgba(0, 0, 0, 0) 98%);
     background-position: calc(50% - 1px);
     background-size: 1px;
     background-repeat: no-repeat;
     font-size: 0;
     padding: 10px;
 }
+
 #player0,
 #player1 {
     display: inline-block;
@@ -80,6 +81,7 @@ canvas {
     text-align: center;
     width: 50%;
 }
+
 .player.plays .name {
     font-weight: bold;
 }
@@ -88,6 +90,7 @@ canvas {
     min-width: 300px;
     padding: 0 20px;
 }
+
 .button {
     border-width: 2px;
     border-style: solid;
@@ -103,24 +106,28 @@ canvas {
     text-decoration: none;
     text-transform: uppercase;
 }
+
 .button:hover,
 .button:focus {
     color: #fff;
     text-decoration: none;
 }
+
 .button:active {
     background: #fff;
     color: #bbb;
 }
+
 #menu-link {
     margin: 1em 0 0 -2em;
     padding: 0.4em;
     padding-left: 2.4em;
     position: absolute;
-        top: 0;
-        left: 0;
+    top: 0;
+    left: 0;
     transition: margin-left .3s;
 }
+
 #menu-link:hover,
 #menu-link:focus {
     margin-left: -1.6em;
@@ -135,11 +142,12 @@ canvas {
     display: none;
     padding: 20px;
     position: absolute;
-        top: 10px;
-        right: 10px;
-        bottom: 10px;
-        left: 10px;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
 }
+
 .dialog h1 {
     font-size: 1.5em;
     margin: .5em 0 1em;
@@ -147,41 +155,48 @@ canvas {
     text-align: center;
     text-transform: uppercase;
 }
+
 .dialog-inner {
     display: flex;
     flex-direction: column;
     min-height: 100%;
 }
+
 .dialog-body {
     flex: 1 100%;
 }
+
 .dialog-footer {
     text-align: center;
 }
+
 .dialog-footer .button {
     font-size: 1rem;
     padding: 1em 5%;
 }
-
 /* Best scores */
+
 .best-scores-table {
     text-align: center;
     width: 100%;
 }
+
 .best-scores-table th {
     padding: 5px;
     text-transform: uppercase;
 }
+
 .best-scores-table td {
     padding: 5px;
 }
-
 /* Preferences */
+
 .preferences-settings label,
 .preferences-settings .label {
     display: inline-block;
     width: 49%;
 }
+
 .preferences-settings input,
 .preferences-settings select {
     background: transparent;
@@ -192,47 +207,54 @@ canvas {
     padding: 7px 15px;
     text-align: center;
 }
+
 .preferences-settings input[type="number"] {
     padding: 7px 10px;
     width: 60px;
 }
+
 .preferences-settings input[type="color"] {
     padding: 2px 5px;
 }
+
 .preferences-settings select {
     width: 49%;
 }
+
 .preferences-settings select:active {
     background: #fff;
     color: #bbb;
 }
+
 .preferences-settings fieldset {
     border: 2px solid #ddd;
     border-radius: 10px;
     margin: 0 0 1em;
 }
-.preferences-settings  fieldset label {
+
+.preferences-settings fieldset label {
     width: 70%;
 }
+
 .preferences-controls .button {
     display: inline-block;
     margin: 0 3%;
     width: 30%;
 }
-
 /* Game over */
+
 #game-is-over {
     text-align: center;
 }
+
 #game-is-over .score {
     font-size: 6em;
 }
 
-
 @media (min-width: 916px) {
-	#board {
-		float: left;
-	}
+    #board {
+        float: left;
+    }
     #players-info {
         float: right;
         margin-left: 20px;

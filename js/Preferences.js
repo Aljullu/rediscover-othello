@@ -1,6 +1,6 @@
 "use strict";
 
-var Preferences = function() {
+var Preferences = function () {
     this.color = localStorage.getItem("color") || "white";
     this.start = localStorage.getItem("start") || "me";
     this.boardColor = localStorage.getItem("boardColor") || "#003200";
@@ -11,11 +11,11 @@ var Preferences = function() {
     this.startingPointX = localStorage.getItem("statingPointY") || null;
 }
 
-Preferences.prototype.saveSetting = function(setting, value) {
+Preferences.prototype.saveSetting = function (setting, value) {
     this[setting] = value;
     localStorage.setItem(setting, value);
 }
 
-Preferences.prototype.getSetting = function(setting) {
+Preferences.prototype.getSetting = function (setting) {
     return this[setting];
 }
