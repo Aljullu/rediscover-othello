@@ -118,6 +118,17 @@ canvas {
     color: #bbb;
 }
 
+#campaign-level {
+    margin: 1em 0 0 -2em;
+    padding: 0.4em;
+    padding-left: 2.4em;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    transition: margin-left .3s;
+    width: 20px;
+}
+
 #menu-link {
     margin: 1em 0 0 -2em;
     padding: 0.4em;

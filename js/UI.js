@@ -138,6 +138,16 @@ UI.prototype.parseFile = function (response) {
         } else if (responseArray[i][0] === 'startingPoint') {
             mapSettings.startingPointX = responseArray[i][1];
             mapSettings.startingPointY = responseArray[i][2];
+        } else if (responseArray[i][0] === 'mapW') {
+            mapSettings.mapW = [];
+            for (var j = 1; j < responseArray[i].length; j = j+2) {
+                mapSettings.mapW.push([responseArray[i][j], responseArray[i][j+1]]);
+            }
+        } else if (responseArray[i][0] === 'mapB') {
+            mapSettings.mapB = [];
+            for (var j = 1; j < responseArray[i].length; j = j+2) {
+                mapSettings.mapB.push([responseArray[i][j], responseArray[i][j+1]]);
+            }
         }
     }
     return mapSettings;
@@ -157,8 +167,9 @@ UI.prototype.prepareMap = function () {
 
     if (this.campaignLevel >= 0) {
         if (debug) {
-            var mapCode = ['size,12,12\nstartingPoint,1,1\ncolor,#fff,#000',
-                           'size,8,8\nstartingPoint,1,1\ncolor,#f00,#0f0'];
+            var mapCode = ['size,8,8\nstartingPoint,1,1',
+                           'size,8,8\nmapW,2,2,3,3,4,4,5,5\nmapB,2,5,3,4,4,3,5,2',
+                           'size,8,8\nmapW,2,2,3,3,4,4,5,5\nmapB,2,5,3,4,4,3,5,2'];
             ui.startMap(ui.parseFile(mapCode[this.campaignLevel]));
         } else {
             var map = './maps/map' + ('000' + this.campaignLevel).slice(-3) + '.csv';
@@ -176,11 +187,13 @@ UI.prototype.prepareMap = function () {
 
 UI.prototype.startGame = function () {
     this.campaignLevel = -1;
+    $('#campaign-level').hide();
     ui.prepareMap();
 }
 
 UI.prototype.startCampaign = function () {
     this.campaignLevel = preferences.getSetting('campaignLevel');
+    $('#campaign-level').text(parseInt(this.campaignLevel, 10) + 1).show();
     ui.prepareMap();
 }
 

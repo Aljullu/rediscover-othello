@@ -20,6 +20,9 @@ var Board = function (mapSettings) {
 
     this.startingPointX = (mapSettings.startingPointX) ? mapSettings.startingPointX : preferences.getSetting('startingPointX');
     this.startingPointY = (mapSettings.startingPointY) ? mapSettings.startingPointY : preferences.getSetting('startingPointY');
+
+    this.mapW = (mapSettings.mapW) ? mapSettings.mapW : null;
+    this.mapB = (mapSettings.mapB) ? mapSettings.mapB : null;
 };
 
 Board.prototype.initialize = function () {
@@ -36,25 +39,37 @@ Board.prototype.initialize = function () {
 
     this.toBePainted = false;
 
-    var x,
-        y;
-    if (typeof this.startingPointX !== "undefined" && this.startingPointX !== null) {
-        x = Math.max(this.startingPointX, 0);
-        x = Math.min(x, this.cellColumns - 2);
-    } else {
-        x = this.cellColumns / 2 - 1;
+    // Load map if it's set
+    if (this.mapW && this.mapB) {
+        for (var i = 0; i < this.mapW.length; i++) {
+            this.cell[this.mapW[i][0]][this.mapW[i][1]].state = 1;
+        }
+        for (var i = 0; i < this.mapB.length; i++) {
+            this.cell[this.mapB[i][0]][this.mapB[i][1]].state = 2;
+        }
     }
-    if (typeof this.startingPointY !== "undefined" && this.startingPointY !== null) {
-        y = Math.max(this.startingPointY, 0);
-        y = Math.min(y, this.cellRows - 2);
-    } else {
-        y = this.cellRows / 2 - 1;
+    else {
+        var x,
+            y;
+        // Load starting points if they are set
+        if (typeof this.startingPointX !== "undefined" && this.startingPointX !== null) {
+            x = Math.max(this.startingPointX, 0);
+            x = Math.min(x, this.cellColumns - 2);
+        } else {
+            x = this.cellColumns / 2 - 1;
+        }
+        if (typeof this.startingPointY !== "undefined" && this.startingPointY !== null) {
+            y = Math.max(this.startingPointY, 0);
+            y = Math.min(y, this.cellRows - 2);
+        } else {
+            y = this.cellRows / 2 - 1;
+        }
+        // Don't allow values outside the scope
+        this.cell[Math.floor(x)][Math.floor(y)].state = 1;
+        this.cell[Math.floor(x)][Math.floor(y + 1)].state = 2;
+        this.cell[Math.floor(x + 1)][Math.floor(y)].state = 2;
+        this.cell[Math.floor(x + 1)][Math.floor(y + 1)].state = 1;
     }
-    // Don't allow values outside the scope
-    this.cell[Math.floor(x)][Math.floor(y)].state = 1;
-    this.cell[Math.floor(x)][Math.floor(y + 1)].state = 2;
-    this.cell[Math.floor(x + 1)][Math.floor(y)].state = 2;
-    this.cell[Math.floor(x + 1)][Math.floor(y + 1)].state = 1;
 
     ui.initialize();
 }
