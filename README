@@ -12,6 +12,10 @@ Roadmap:
 * Reset preferences
 * If #columns is very different than #rows, it doesn't look good
 * Bug when changing color of multiple pieces (maybe audio bug?)
+* Campaign
+    * Show current #level
+    * Allow playing previous levels
+    * Show results from previous levels
 
 Finished:
 * Preferences

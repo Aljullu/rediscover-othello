@@ -9,6 +9,7 @@ var Preferences = function () {
     this.cellColumns = localStorage.getItem("cellColumns") || 8;
     this.startingPointX = localStorage.getItem("statingPointX") || null;
     this.startingPointX = localStorage.getItem("statingPointY") || null;
+    this.campaignLevel = localStorage.getItem("campaignLevel") || 0;
 }
 
 Preferences.prototype.saveSetting = function (setting, value) {

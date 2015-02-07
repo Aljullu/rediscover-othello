@@ -6,6 +6,7 @@ var UI = function () {
     this.turn = 0;
     this.offsetLeft = 0;
     this.offsetTop = 0;
+    this.campaignLevel = -1;
 }
 
 UI.prototype.initialize = function () {
@@ -51,10 +52,21 @@ UI.prototype.winner = function (id) {
     ui.markTurn(id);
     ui.showMessage("Player " + id + " wins by " + board.getAdvantage(id) + "!");
     if (id === 1) {
+        if (this.campaignLevel >= 0) { // we were in campaign mode
+            this.campaignLevel++;
+            preferences.saveSetting('campaignLevel', this.campaignLevel);
+        }
         $("#game-is-over-winner").show();
+        if (this.campaignLevel >= 0) {
+            $('.continue-campaign').show();
+        }
+        else {
+            $('.continue-campaign').hide();
+        }
         $("#game-is-over-loser").hide();
     } else {
         $("#game-is-over-winner").hide();
+        $('.continue-campaign').hide();
         $("#game-is-over-loser").show();
     }
     ui.showDialog('game-is-over');
@@ -131,7 +143,7 @@ UI.prototype.parseFile = function (response) {
     return mapSettings;
 }
 
-UI.prototype.startGame = function () {
+UI.prototype.prepareMap = function () {
     // Set flag to true
     gameRunning = true;
 
@@ -141,15 +153,15 @@ UI.prototype.startGame = function () {
     canvas.addEventListener("mousemove", doMoveMouse, false);
     ctx = canvas.getContext('2d');
 
-    // Create game stuff
     var debug = true;
 
-    if (debug) {
+    if (this.campaignLevel >= 0) {
         if (debug) {
-            var mapCode = 'size,12,12\nstartingPoint,1,1\ncolor,#fff,#000';
-            ui.startMap(ui.parseFile(mapCode));
+            var mapCode = ['size,12,12\nstartingPoint,1,1\ncolor,#fff,#000',
+                           'size,8,8\nstartingPoint,1,1\ncolor,#f00,#0f0'];
+            ui.startMap(ui.parseFile(mapCode[this.campaignLevel]));
         } else {
-            var map = './maps/map001.csv';
+            var map = './maps/map' + ('000' + this.campaignLevel).slice(-3) + '.csv';
             $.ajax({
                 url: map,
                 success: function (response) {
@@ -160,6 +172,16 @@ UI.prototype.startGame = function () {
     } else {
         ui.startMap([]);
     }
+}
+
+UI.prototype.startGame = function () {
+    this.campaignLevel = -1;
+    ui.prepareMap();
+}
+
+UI.prototype.startCampaign = function () {
+    this.campaignLevel = preferences.getSetting('campaignLevel');
+    ui.prepareMap();
 }
 
 UI.prototype.startMap = function (mapSettings) {
