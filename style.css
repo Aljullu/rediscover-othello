@@ -13,11 +13,7 @@ body {
 }
 
 .hidden {
-    display: none;
-}
-
-.game {
-    display: none;
+    display: none !important;
 }
 
 #game-title {
@@ -129,6 +125,10 @@ canvas {
     width: 20px;
 }
 
+#campaign-level:empty {
+  display: none;
+}
+
 #menu-link {
     margin: 1em 0 0 -2em;
     padding: 0.4em;
@@ -150,7 +150,6 @@ canvas {
     border: 3px solid #ddd;
     border-radius: 16px;
     color: #fff;
-    display: none;
     padding: 20px;
     position: absolute;
     top: 10px;

@@ -10,19 +10,19 @@
 <body>
     <div id="wrapper">
         <a id="game-title" href="javascript:ui.showMenu()">Rediscover Othello</a>
-        <div id="menu" class="no-game" style="display: none;">
-            <a id="resume-game" href="javascript:ui.resumeGame()" style="display: none;" class="button">Resume game</a>
+        <div id="menu" class="no-game hidden">
+            <a id="resume-game" href="javascript:ui.resumeGame()" class="button hidden">Resume game</a>
             <a id="start-game" href="javascript:ui.startGame()" class="button">Start game</a>
             <a id="start-campaign" href="javascript:ui.startCampaign()" class="button">Start campaign</a>
             <a id="show-best-scores" href="javascript:ui.showBestScores()" class="button">Best scores</a>
             <a id="show-preferences" href="javascript:ui.showPreferences()" class="button">Preferences</a>
         </div>
         <div id="campaign-level" class="button game"></div>
-        <div id="board" class="game">
+        <div id="board" class="game hidden">
             <canvas id="board-canvas" width="400" height="400"></canvas>
             <a id="menu-link" href="javascript:ui.showMenu()" title="Open menu" class="button"><i class="fa fa-bars"></i></a>
         </div>
-        <div id="players-info" class="game">
+        <div id="players-info" class="game hidden">
             <div id="player0" class="player">
                 <div class="name"></div>
                 <div class="player0-score score"></div>

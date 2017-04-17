@@ -56,23 +56,23 @@ UI.prototype.winner = function (id) {
             this.campaignLevel++;
             preferences.saveSetting('campaignLevel', this.campaignLevel);
         }
-        $("#game-is-over-winner").show();
+        $("#game-is-over-winner").removeClass('hidden');
         if (this.campaignLevel >= 0) {
-            $('.continue-campaign').show();
+            $('.continue-campaign').removeClass('hidden');
         }
         else {
-            $('.continue-campaign').hide();
+            $('.continue-campaign').addClass('hidden');
         }
-        $("#game-is-over-loser").hide();
+        $("#game-is-over-loser").addClass('hidden');
     } else {
-        $("#game-is-over-winner").hide();
-        $('.continue-campaign').hide();
-        $("#game-is-over-loser").show();
+        $("#game-is-over-winner").addClass('hidden');
+        $('.continue-campaign').addClass('hidden');
+        $("#game-is-over-loser").removeClass('hidden');
     }
     ui.showDialog('game-is-over');
 
     // Make some menu modifications
-    $("#resume-game").hide();
+    $("#resume-game").addClass('hidden');
     $("#start-game").html("Start game");
 
     ui.saveScore();
@@ -187,13 +187,13 @@ UI.prototype.prepareMap = function () {
 
 UI.prototype.startGame = function () {
     this.campaignLevel = -1;
-    $('#campaign-level').hide();
+    $('#campaign-level').html('').addClass('hidden');
     ui.prepareMap();
 }
 
 UI.prototype.startCampaign = function () {
     this.campaignLevel = preferences.getSetting('campaignLevel');
-    $('#campaign-level').text(parseInt(this.campaignLevel, 10) + 1).show();
+    $('#campaign-level').text(parseInt(this.campaignLevel, 10) + 1).removeClass('hidden');
     ui.prepareMap();
 }
 
@@ -213,7 +213,7 @@ UI.prototype.startMap = function (mapSettings) {
     ui.calculateOffsets();
 
     // Make some menu modifications
-    $("#resume-game").show();
+    $("#resume-game").removeClass('hidden');
     $("#start-game").html("Start new game");
 
     ui.startTimer();
@@ -233,26 +233,26 @@ UI.prototype.resumeGame = function () {
 }
 
 UI.prototype.showMenu = function () {
-    $(".game").hide();
-    $(".dialog").hide();
-    $(".no-game").show();
+    $(".game").addClass('hidden');
+    $(".dialog").addClass('hidden');
+    $(".no-game").removeClass('hidden');
     $("html").removeClass("playing");
 }
 
 UI.prototype.showGameBoard = function () {
-    $(".no-game").hide();
-    $(".dialog").hide();
-    $(".game").show();
+    $(".no-game").addClass('hidden');
+    $(".dialog").addClass('hidden');
+    $(".game").removeClass('hidden');
     $("html").addClass("playing");
     ui.drawBoard();
 }
 
 UI.prototype.showDialog = function (dialog) {
-    $("#" + dialog).show();
+    $("#" + dialog).removeClass('hidden');
 }
 
 UI.prototype.hideDialog = function (dialog) {
-    $("#" + dialog).hide();
+    $("#" + dialog).addClass('hidden');
 }
 
 UI.prototype.drawBoard = function () {
@@ -285,11 +285,11 @@ UI.prototype.showBestScores = function () {
         for (var i = 0; i < bestScores.length; i++) {
             $(".best-scores-table").append("<tr><td>" + bestScores[i].date + "</td><td>" + bestScores[i].player1 + "-" + bestScores[i].player2 + " (" + bestScores[i].advantage + ")</td><td>" + bestScores[i].duration + "s.</td></tr>");
         }
-        $(".best-scores-empty").hide();
-        $(".best-scores-table").show();
+        $(".best-scores-empty").addClass('hidden');
+        $(".best-scores-table").removeClass('hidden');
     } else {
-        $(".best-scores-empty").show();
-        $(".best-scores-table").hide();
+        $(".best-scores-empty").removeClass('hidden');
+        $(".best-scores-table").addClass('hidden');
     }
     ui.showDialog('best-scores');
 }
