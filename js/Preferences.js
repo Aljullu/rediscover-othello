@@ -1,7 +1,7 @@
 "use strict";
 
 var Preferences = function () {
-    this.color = localStorage.getItem("color") || "white";
+    this.playerColor = localStorage.getItem("playerColor") || "white";
     this.start = localStorage.getItem("start") || "me";
     this.boardColor = localStorage.getItem("boardColor") || "#003200";
     this.boardBorderColor = localStorage.getItem("boardBorderColor") || "#002800";

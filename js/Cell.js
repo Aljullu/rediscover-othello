@@ -17,7 +17,7 @@ Cell.prototype.draw = function () {
 
     // Draw green board
     function drawBoard(ctx, x1, y1, sizeX, sizeY) {
-        ctx.fillStyle = board.color;
+        ctx.fillStyle = board.boardColor;
         ctx.fillRect(x1, y1, sizeX, sizeY);
     }
 
@@ -41,7 +41,7 @@ Cell.prototype.draw = function () {
     function drawPlayer(ctx, x1c, y1c, radius) {
         var grd = ctx.createRadialGradient(x1c, y1c, radius, x1c + radius * 2, y1c + radius * 2, radius * 2);
 
-        if (scope.state === 1) { // white player
+        if (scope.state === 1 && board.playerColor === 'white' || scope.state === 2 && board.playerColor === 'black') { // white player
             grd.addColorStop(0, '#aaa');
             grd.addColorStop(1, '#fff');
         } else { // black player

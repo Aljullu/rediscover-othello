@@ -18,10 +18,6 @@ The AI will give a weight of how good or how bad every situation is and, when it
 
 ## TODO
 
-### Bugs
-
-* [ ] Choose color is not working
-
 ### Roadmap
 
 * [ ] Add more game modes
@@ -45,3 +41,4 @@ The AI will give a weight of how good or how bad every situation is and, when it
 * [x] Allow starting in a different position
 * [x] Load maps from file
 * [x] Campaign: Show current #level
+* [x] Choose color is not working

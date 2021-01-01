@@ -15,7 +15,8 @@ var Board = function (mapSettings) {
     this.cellWidth = this.width / this.cellColumns;
     this.cellBorder = 1;
 
-    this.color = (mapSettings.color) ? mapSettings.color : preferences.getSetting('boardColor');
+    this.playerColor = preferences.getSetting('playerColor');
+    this.boardColor = (mapSettings.boardColor) ? mapSettings.boardColor : preferences.getSetting('boardColor');
     this.borderColor = (mapSettings.borderColor) ? mapSettings.borderColor : preferences.getSetting('boardBorderColor');
 
     this.startingPointX = (mapSettings.startingPointX) ? mapSettings.startingPointX : preferences.getSetting('startingPointX');

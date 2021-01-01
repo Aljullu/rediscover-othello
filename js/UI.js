@@ -305,14 +305,14 @@ UI.prototype.hideBestScores = function () {
 }
 
 UI.prototype.showPreferences = function () {
-    var color = preferences.getSetting('color');
-    $("#preferences-color").val(color);
+    var playerColor = preferences.getSetting('playerColor');
+    $("#preferences-player-color").val(playerColor);
     var start = preferences.getSetting('start');
     $("#preferences-start").val(start);
     var boardColor = preferences.getSetting('boardColor');
-    $("#preferences-table-color").val(boardColor);
+    $("#preferences-board-color").val(boardColor);
     var boardBorderColor = preferences.getSetting('boardBorderColor');
-    $("#preferences-table-border-color").val(boardBorderColor);
+    $("#preferences-board-border-color").val(boardBorderColor);
     var cellRows = preferences.getSetting('cellRows');
     $("#preferences-cellRows").val(cellRows);
     var cellColumns = preferences.getSetting('cellColumns');
@@ -336,19 +336,19 @@ UI.prototype.hidePreferences = function () {
 UI.prototype.savePreferences = function () {
     this.hidePreferences();
 
-    var colorSelect = document.getElementById("preferences-color");
-    var color = colorSelect.options[colorSelect.selectedIndex].value;
-    preferences.saveSetting('color', color);
+    var playerColorSelect = document.getElementById("preferences-player-color");
+    var color = playerColorSelect.options[playerColorSelect.selectedIndex].value;
+    preferences.saveSetting('playerColor', color);
 
     var startSelect = document.getElementById("preferences-start");
     var start = startSelect.options[startSelect.selectedIndex].value;
     preferences.saveSetting('start', start);
 
-    var boardColorInput = document.getElementById("preferences-table-color");
+    var boardColorInput = document.getElementById("preferences-board-color");
     var boardColor = boardColorInput.value;
     preferences.saveSetting('boardColor', boardColor);
 
-    var boardBorderColorInput = document.getElementById("preferences-table-border-color");
+    var boardBorderColorInput = document.getElementById("preferences-board-border-color");
     var boardBorderColor = boardBorderColorInput.value;
     preferences.saveSetting('boardBorderColor', boardBorderColor);
 
