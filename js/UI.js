@@ -287,7 +287,7 @@ UI.prototype.calculateOffsets = function () {
 UI.prototype.showBestScores = function () {
     if (localStorage.getItem('bestScores')) {
         var bestScores = JSON.parse(localStorage.getItem('bestScores'));
-        $(".best-scores-table").html("<tr><th>Date</th><th>Potins</th><th>Duration</th></tr>");
+        $(".best-scores-table").html("<tr><th>Date</th><th>Points</th><th>Duration</th></tr>");
         for (var i = 0; i < bestScores.length; i++) {
             $(".best-scores-table").append("<tr><td>" + bestScores[i].date + "</td><td>" + bestScores[i].player1 + "-" + bestScores[i].player2 + " (" + bestScores[i].advantage + ")</td><td>" + bestScores[i].duration + "s.</td></tr>");
         }
