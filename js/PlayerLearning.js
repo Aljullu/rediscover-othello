@@ -34,8 +34,8 @@ PlayerLearning.prototype.play = function () {
   setTimeout(makePlay, 100);
 
   function makePlay() {
-    var bestx = 0;
-    var besty = 0;
+    var bestX = 0;
+    var bestY = 0;
     var bestAdvantage = Number.MIN_VALUE;
 
     for (var i = 0; i < board.cellColumns; i++) {
@@ -52,15 +52,15 @@ PlayerLearning.prototype.play = function () {
             boardTmp.get4BorderCellsByPlayer(2) * scope.weights[2][1];
           if (advantageTmp > bestAdvantage /*&& Math.random() < .9*/) {
             bestAdvantage = advantageTmp;
-            bestx = i;
-            besty = j;
+            bestX = i;
+            bestY = j;
           }
         }
       }
     }
 
     // Make the movement
-    if (board.cell[bestx][besty].playerPlay(scope.id)) {
+    if (board.cell[bestX][bestY].playerPlay(scope.id)) {
       scope.variables[0][0] += board.getCellsByPlayer(1);
       scope.variables[0][1] += board.getCellsByPlayer(2);
       scope.variables[1][0] += board.getBorderCellsByPlayer(1);

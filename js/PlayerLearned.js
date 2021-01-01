@@ -25,8 +25,8 @@ PlayerLearned.prototype.play = function () {
   setTimeout(makePlay, 500);
 
   function makePlay() {
-    var bestx = -1;
-    var besty = -1;
+    var bestX = -1;
+    var bestY = -1;
     var bestAdvantage = -Number.MIN_VALUE;
 
     for (var i = 0; i < board.cellColumns; i++) {
@@ -47,21 +47,21 @@ PlayerLearned.prototype.play = function () {
               scope.weights[2][1];
 
           if (
-            (bestx === -1 && besty === -1) ||
+            (bestX === -1 && bestY === -1) ||
             advantageTmp > bestAdvantage
             /* &&
                                                      Math.random() <= scope.level*/
           ) {
             bestAdvantage = advantageTmp;
-            bestx = i;
-            besty = j;
+            bestX = i;
+            bestY = j;
           }
         }
       }
     }
 
     // Make the movement
-    if (board.cell[bestx][besty].playerPlay(scope.id)) {
+    if (board.cell[bestX][bestY].playerPlay(scope.id)) {
       board.playerPlaying = scope.opponentid;
       board.updateInfo();
     }

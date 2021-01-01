@@ -107,34 +107,34 @@ Cell.prototype.canPlayerPlay = function (player) {
   // Get enemy id
   const enemy = player === 2 ? 1 : 2;
 
-  var minx = this.x - 1 < 0 ? 0 : this.x - 1;
-  var maxx =
+  var minX = this.x - 1 < 0 ? 0 : this.x - 1;
+  var maxX =
     this.x + 1 > this.board.cellColumns - 1
       ? this.board.cellColumns - 1
       : this.x + 1;
-  var miny = this.y - 1 < 0 ? 0 : this.y - 1;
-  var maxy =
+  var minY = this.y - 1 < 0 ? 0 : this.y - 1;
+  var maxY =
     this.y + 1 > this.board.cellColumns - 1
       ? this.board.cellColumns - 1
       : this.y + 1;
 
   if (
-    (this.board.cell[minx][this.y].search(player, 4) &&
-      this.board.cell[minx][this.y].state === enemy) ||
-    (this.board.cell[maxx][this.y].search(player, 2) &&
-      this.board.cell[maxx][this.y].state === enemy) ||
-    (this.board.cell[this.x][miny].search(player, 1) &&
-      this.board.cell[this.x][miny].state === enemy) ||
-    (this.board.cell[this.x][maxy].search(player, 3) &&
-      this.board.cell[this.x][maxy].state === enemy) ||
-    (this.board.cell[maxx][maxy].search(player, 5) &&
-      this.board.cell[maxx][maxy].state === enemy) ||
-    (this.board.cell[maxx][miny].search(player, 6) &&
-      this.board.cell[maxx][miny].state === enemy) ||
-    (this.board.cell[minx][miny].search(player, 7) &&
-      this.board.cell[minx][miny].state === enemy) ||
-    (this.board.cell[minx][maxy].search(player, 8) &&
-      this.board.cell[minx][maxy].state === enemy)
+    (this.board.cell[minX][this.y].search(player, 4) &&
+      this.board.cell[minX][this.y].state === enemy) ||
+    (this.board.cell[maxX][this.y].search(player, 2) &&
+      this.board.cell[maxX][this.y].state === enemy) ||
+    (this.board.cell[this.x][minY].search(player, 1) &&
+      this.board.cell[this.x][minY].state === enemy) ||
+    (this.board.cell[this.x][maxY].search(player, 3) &&
+      this.board.cell[this.x][maxY].state === enemy) ||
+    (this.board.cell[maxX][maxY].search(player, 5) &&
+      this.board.cell[maxX][maxY].state === enemy) ||
+    (this.board.cell[maxX][minY].search(player, 6) &&
+      this.board.cell[maxX][minY].state === enemy) ||
+    (this.board.cell[minX][minY].search(player, 7) &&
+      this.board.cell[minX][minY].state === enemy) ||
+    (this.board.cell[minX][maxY].search(player, 8) &&
+      this.board.cell[minX][maxY].state === enemy)
   )
     return true;
 
@@ -161,40 +161,40 @@ Cell.prototype.playerPlay = function (playerId) {
   var enemy = 2;
   if (playerId === 2) enemy = 1;
 
-  var minx = this.x - 1 < 0 ? 0 : this.x - 1;
-  var maxx =
+  var minX = this.x - 1 < 0 ? 0 : this.x - 1;
+  var maxX =
     this.x + 1 > this.board.cellColumns - 1
       ? this.board.cellColumns - 1
       : this.x + 1;
-  var miny = this.y - 1 < 0 ? 0 : this.y - 1;
-  var maxy =
+  var minY = this.y - 1 < 0 ? 0 : this.y - 1;
+  var maxY =
     this.y + 1 > this.board.cellRows - 1
       ? this.board.cellColumns - 1
       : this.y + 1;
 
-  if (this.board.cell[minx][this.y].search(playerId, 4))
-    this.board.cell[minx][this.y].propagate(playerId, 4, 0);
+  if (this.board.cell[minX][this.y].search(playerId, 4))
+    this.board.cell[minX][this.y].propagate(playerId, 4, 0);
 
-  if (this.board.cell[maxx][this.y].search(playerId, 2))
-    this.board.cell[maxx][this.y].propagate(playerId, 2, 0);
+  if (this.board.cell[maxX][this.y].search(playerId, 2))
+    this.board.cell[maxX][this.y].propagate(playerId, 2, 0);
 
-  if (this.board.cell[this.x][miny].search(playerId, 1))
-    this.board.cell[this.x][miny].propagate(playerId, 1, 0);
+  if (this.board.cell[this.x][minY].search(playerId, 1))
+    this.board.cell[this.x][minY].propagate(playerId, 1, 0);
 
-  if (this.board.cell[this.x][maxy].search(playerId, 3))
-    this.board.cell[this.x][maxy].propagate(playerId, 3, 0);
+  if (this.board.cell[this.x][maxY].search(playerId, 3))
+    this.board.cell[this.x][maxY].propagate(playerId, 3, 0);
 
-  if (this.board.cell[maxx][maxy].search(playerId, 5))
-    this.board.cell[maxx][maxy].propagate(playerId, 5, 0);
+  if (this.board.cell[maxX][maxY].search(playerId, 5))
+    this.board.cell[maxX][maxY].propagate(playerId, 5, 0);
 
-  if (this.board.cell[maxx][miny].search(playerId, 6))
-    this.board.cell[maxx][miny].propagate(playerId, 6, 0);
+  if (this.board.cell[maxX][minY].search(playerId, 6))
+    this.board.cell[maxX][minY].propagate(playerId, 6, 0);
 
-  if (this.board.cell[minx][miny].search(playerId, 7))
-    this.board.cell[minx][miny].propagate(playerId, 7, 0);
+  if (this.board.cell[minX][minY].search(playerId, 7))
+    this.board.cell[minX][minY].propagate(playerId, 7, 0);
 
-  if (this.board.cell[minx][maxy].search(playerId, 8))
-    this.board.cell[minx][maxy].propagate(playerId, 8, 0);
+  if (this.board.cell[minX][maxY].search(playerId, 8))
+    this.board.cell[minX][maxY].propagate(playerId, 8, 0);
 
   return true;
 };
