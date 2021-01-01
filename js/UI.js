@@ -133,11 +133,11 @@ var board;
 UI.prototype.parseFile = function (response) {
   var responseArray = response.split("\n"),
     mapSettings = [];
-  for (var i = 0; i < responseArray.length; i++) {
+  for (let i = 0; i < responseArray.length; i++) {
     responseArray[i] = responseArray[i].split(",");
   }
 
-  for (var i = 0; i < responseArray.length; i++) {
+  for (let i = 0; i < responseArray.length; i++) {
     if (responseArray[i][0] === "size") {
       mapSettings.cellRows = responseArray[i][1];
       mapSettings.cellColumns = responseArray[i][2];
@@ -149,12 +149,12 @@ UI.prototype.parseFile = function (response) {
       mapSettings.startingPointY = responseArray[i][2];
     } else if (responseArray[i][0] === "mapW") {
       mapSettings.mapW = [];
-      for (var j = 1; j < responseArray[i].length; j = j + 2) {
+      for (let j = 1; j < responseArray[i].length; j = j + 2) {
         mapSettings.mapW.push([responseArray[i][j], responseArray[i][j + 1]]);
       }
     } else if (responseArray[i][0] === "mapB") {
       mapSettings.mapB = [];
-      for (var j = 1; j < responseArray[i].length; j = j + 2) {
+      for (let j = 1; j < responseArray[i].length; j = j + 2) {
         mapSettings.mapB.push([responseArray[i][j], responseArray[i][j + 1]]);
       }
     }

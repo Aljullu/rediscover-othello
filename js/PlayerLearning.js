@@ -4,14 +4,14 @@ var PlayerLearning = function () {
   this.id = 1;
 
   this.weights = new Array(3);
-  for (var i = 0; i < this.weights.length; i++) {
+  for (let i = 0; i < this.weights.length; i++) {
     this.weights[i] = new Array(2);
     this.weights[i][0] = 0;
     this.weights[i][1] = 0;
   }
 
   this.variables = new Array(3);
-  for (var i = 0; i < this.variables.length; i++) {
+  for (let i = 0; i < this.variables.length; i++) {
     this.variables[i] = new Array(2);
     this.variables[i][0] = 0;
     this.variables[i][1] = 0;

@@ -67,6 +67,6 @@ function pointInRectangle(x, y, ax, ay, bx, by) {
   return false;
 }
 
-window.onresize = function (event) {
+window.onresize = function () {
   ui.drawBoard();
 };

@@ -5,6 +5,7 @@
   "main": "index.htm",
   "scripts": {
     "prettier": "npx prettier --write .",
+    "lint:js": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,6 +17,7 @@
   },
   "homepage": "https://github.com/Aljullu/rediscover-othello#readme",
   "devDependencies": {
+    "eslint": "^7.16.0",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
     "prettier": "2.2.1"
@@ -27,7 +29,8 @@
   },
   "lint-staged": {
     "*.js": [
-      "npm run prettier"
+      "npm run prettier",
+      "npm run lint:js"
     ]
   }
 }

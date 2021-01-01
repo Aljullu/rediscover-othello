@@ -54,10 +54,10 @@ Board.prototype.initialize = function () {
 
   // Load map if it's set
   if (this.mapW && this.mapB) {
-    for (var i = 0; i < this.mapW.length; i++) {
+    for (let i = 0; i < this.mapW.length; i++) {
       this.cell[this.mapW[i][0]][this.mapW[i][1]].state = 1;
     }
-    for (var i = 0; i < this.mapB.length; i++) {
+    for (let i = 0; i < this.mapB.length; i++) {
       this.cell[this.mapB[i][0]][this.mapB[i][1]].state = 2;
     }
   } else {

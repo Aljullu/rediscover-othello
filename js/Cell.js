@@ -105,8 +105,7 @@ Cell.prototype.canPlayerPlay = function (player) {
   if (this.state !== 0) return false;
 
   // Get enemy id
-  var enemy = 2;
-  if (player === 2) enemy = 1;
+  const enemy = player === 2 ? 1 : 2;
 
   var minx = this.x - 1 < 0 ? 0 : this.x - 1;
   var maxx =
@@ -210,19 +209,15 @@ Cell.prototype.search = function (player, direction) {
       case 1:
         if (this.y - 1 < 0) return false;
         return this.board.cell[this.x][this.y - 1].search(player, 1);
-        break;
       case 2:
         if (this.x + 1 > this.board.cellColumns - 1) return false;
         return this.board.cell[this.x + 1][this.y].search(player, 2);
-        break;
       case 3:
         if (this.y + 1 > this.board.cellRows - 1) return false;
         return this.board.cell[this.x][this.y + 1].search(player, 3);
-        break;
       case 4:
         if (this.x - 1 < 0) return false;
         return this.board.cell[this.x - 1][this.y].search(player, 4);
-        break;
       case 5:
         if (
           this.x + 1 > this.board.cellColumns - 1 ||
@@ -230,21 +225,17 @@ Cell.prototype.search = function (player, direction) {
         )
           return false;
         return board.cell[this.x + 1][this.y + 1].search(player, 5);
-        break;
       case 6:
         if (this.x + 1 > this.board.cellColumns - 1 || this.y - 1 < 0)
           return false;
         return board.cell[this.x + 1][this.y - 1].search(player, 6);
-        break;
       case 7:
         if (this.x - 1 < 0 || this.y - 1 < 0) return false;
         return this.board.cell[this.x - 1][this.y - 1].search(player, 7);
-        break;
       case 8:
         if (this.x - 1 < 0 || this.y + 1 > this.board.cellRows - 1)
           return false;
         return this.board.cell[this.x - 1][this.y + 1].search(player, 8);
-        break;
     }
   }
 };
@@ -294,7 +285,6 @@ Cell.prototype.propagate = function (player, direction, step) {
           5,
           step
         );
-        break;
       case 6:
         if (this.x + 1 > this.board.cellColumns - 1 || this.y - 1 < 0) return;
         return this.board.cell[this.x + 1][this.y - 1].propagate(
@@ -302,7 +292,6 @@ Cell.prototype.propagate = function (player, direction, step) {
           6,
           step
         );
-        break;
       case 7:
         if (this.x - 1 < 0 || this.y - 1 < 0) return;
         return this.board.cell[this.x - 1][this.y - 1].propagate(
@@ -310,7 +299,6 @@ Cell.prototype.propagate = function (player, direction, step) {
           7,
           step
         );
-        break;
       case 8:
         if (this.x - 1 < 0 || this.y + 1 > board.cellRows - 1) return;
         return this.board.cell[this.x - 1][this.y + 1].propagate(
@@ -318,7 +306,6 @@ Cell.prototype.propagate = function (player, direction, step) {
           8,
           step
         );
-        break;
     }
   }
 };
