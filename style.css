@@ -8,10 +8,6 @@ body {
     padding: 0;
 }
 
-body {
-    padding: 0 0 10px;
-}
-
 .hidden {
     display: none !important;
 }
