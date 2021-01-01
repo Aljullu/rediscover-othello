@@ -5,7 +5,9 @@
   "main": "index.htm",
   "scripts": {
     "prettier": "npx prettier --write .",
+    "lint": "npm run lint:js && npm run lint:css",
     "lint:js": "eslint .",
+    "lint:css": "stylelint *.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +22,10 @@
     "eslint": "^7.16.0",
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "stylelint": "^13.8.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^20.0.0"
   },
   "husky": {
     "hooks": {
@@ -28,6 +33,9 @@
     }
   },
   "lint-staged": {
+    "*.css": [
+      "npm run lint:css"
+    ],
     "*.js": [
       "npm run prettier",
       "npm run lint:js"
