@@ -51,6 +51,11 @@ UI.prototype.winner = function (id) {
 
     ui.markTurn(id);
     ui.showMessage("Player " + id + " wins by " + board.getAdvantage(id) + "!");
+
+    $("#game-is-over-winner").addClass('hidden');
+    $("#game-is-over-draw").addClass('hidden');
+    $("#game-is-over-loser").addClass('hidden');
+
     if (id === 1) {
         if (this.campaignLevel >= 0) { // we were in campaign mode
             this.campaignLevel++;
@@ -63,11 +68,12 @@ UI.prototype.winner = function (id) {
         else {
             $('.continue-campaign').addClass('hidden');
         }
-        $("#game-is-over-loser").addClass('hidden');
-    } else {
-        $("#game-is-over-winner").addClass('hidden');
+    } else if (id === 2) {
         $('.continue-campaign').addClass('hidden');
         $("#game-is-over-loser").removeClass('hidden');
+    } else {
+        $('.continue-campaign').addClass('hidden');
+        $("#game-is-over-draw").removeClass('hidden');
     }
     ui.showDialog('game-is-over');
 
