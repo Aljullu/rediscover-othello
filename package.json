@@ -1,0 +1,33 @@
+{
+  "name": "rediscover-othello",
+  "version": "0.1.0",
+  "description": "HTML5 Othello game with Machine Learning AI",
+  "main": "index.htm",
+  "scripts": {
+    "prettier": "npx prettier --write .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aljullu/rediscover-othello.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aljullu/rediscover-othello/issues"
+  },
+  "homepage": "https://github.com/Aljullu/rediscover-othello#readme",
+  "devDependencies": {
+    "husky": "^4.3.6",
+    "lint-staged": "^10.5.3",
+    "prettier": "2.2.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run prettier"
+    ]
+  }
+}

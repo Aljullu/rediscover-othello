@@ -1,124 +1,128 @@
 html,
 body {
-    background: #bbb;
-    color: #333;
-    font-family: 'Open Sans', sans-serif;
-    margin: 0;
-    overflow: hidden;
-    padding: 0;
+  background: #bbb;
+  color: #333;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
 }
 
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
 #game-title {
-    color: #eee;
-    cursor: default;
-    display: block;
-    font-size: 3em;
-    font-weight: bold;
-    margin: 1em 0px;
-    text-align: center;
-    text-decoration: none;
+  color: #eee;
+  cursor: default;
+  display: block;
+  font-size: 3em;
+  font-weight: bold;
+  margin: 1em 0px;
+  text-align: center;
+  text-decoration: none;
 }
 
 .playing #game-title {
-    cursor: pointer;
-    font-size: 2em;
-    padding: 0 30px;
+  cursor: pointer;
+  font-size: 2em;
+  padding: 0 30px;
 }
 
 .playing #game-title:hover,
 .playing #game-title:focus,
 .playing #game-title:active {
-    color: #fff;
+  color: #fff;
 }
 
 #wrapper {
-    margin: 20px auto;
-    width: -moz-max-content;
-    width: -webkit-max-content;
-    width: max-content;
+  margin: 20px auto;
+  width: -moz-max-content;
+  width: -webkit-max-content;
+  width: max-content;
 }
 
 #board {
-    box-shadow: 0 0 3px 1px #000, 0 0 10px #000;
+  box-shadow: 0 0 3px 1px #000, 0 0 10px #000;
 }
 
 #wrapper,
 #board,
 canvas {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 #board {
-    font-size: 0;
+  font-size: 0;
 }
 
 #players-info {
-    background-color: #fff;
-    background-image: linear-gradient(rgba(0, 0, 0, 0) 2%, rgba(0, 0, 0, .5) 50%, rgba(0, 0, 0, 0) 98%);
-    background-position: calc(50% - 1px);
-    background-size: 1px;
-    background-repeat: no-repeat;
-    font-size: 0;
-    padding: 10px;
+  background-color: #fff;
+  background-image: linear-gradient(
+    rgba(0, 0, 0, 0) 2%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0) 98%
+  );
+  background-position: calc(50% - 1px);
+  background-size: 1px;
+  background-repeat: no-repeat;
+  font-size: 0;
+  padding: 10px;
 }
 
 #player0,
 #player1 {
-    display: inline-block;
-    font-size: 1rem;
-    text-align: center;
-    width: 50%;
+  display: inline-block;
+  font-size: 1rem;
+  text-align: center;
+  width: 50%;
 }
 
 .player.plays .name {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #menu {
-    min-width: 300px;
-    padding: 0 20px;
+  min-width: 300px;
+  padding: 0 20px;
 }
 
 .button {
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 1000px;
-    color: #eee;
-    cursor: pointer;
-    display: block;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 1em 0;
-    padding: 1em 0;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 1000px;
+  color: #eee;
+  cursor: pointer;
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1em 0;
+  padding: 1em 0;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .button:hover,
 .button:focus {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 .button:active {
-    background: #fff;
-    color: #bbb;
+  background: #fff;
+  color: #bbb;
 }
 
 #campaign-level {
-    margin: 1em 0 0 -2em;
-    padding: 0.4em;
-    padding-left: 2.4em;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    transition: margin-left .3s;
-    width: 20px;
+  margin: 1em 0 0 -2em;
+  padding: 0.4em;
+  padding-left: 2.4em;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  transition: margin-left 0.3s;
+  width: 20px;
 }
 
 #campaign-level:empty {
@@ -126,144 +130,144 @@ canvas {
 }
 
 #menu-link {
-    margin: 1em 0 0 -2em;
-    padding: 0.4em;
-    padding-left: 2.4em;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: margin-left .3s;
+  margin: 1em 0 0 -2em;
+  padding: 0.4em;
+  padding-left: 2.4em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: margin-left 0.3s;
 }
 
 #menu-link:hover,
 #menu-link:focus {
-    margin-left: -1.6em;
-    padding-right: .6em;
+  margin-left: -1.6em;
+  padding-right: 0.6em;
 }
 
 .dialog {
-    background: #bbb;
-    border: 3px solid #ddd;
-    border-radius: 16px;
-    color: #fff;
-    padding: 20px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    bottom: 10px;
-    left: 10px;
+  background: #bbb;
+  border: 3px solid #ddd;
+  border-radius: 16px;
+  color: #fff;
+  padding: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
 }
 
 .dialog h1 {
-    font-size: 1.5em;
-    margin: .5em 0 1em;
-    padding: 0;
-    text-align: center;
-    text-transform: uppercase;
+  font-size: 1.5em;
+  margin: 0.5em 0 1em;
+  padding: 0;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .dialog-inner {
-    display: flex;
-    flex-direction: column;
-    min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .dialog-body {
-    flex: 1 100%;
+  flex: 1 100%;
 }
 
 .dialog-footer {
-    text-align: center;
+  text-align: center;
 }
 
 .dialog-footer .button {
-    font-size: 1rem;
-    padding: 1em 5%;
+  font-size: 1rem;
+  padding: 1em 5%;
 }
 /* Best scores */
 
 .best-scores-table {
-    text-align: center;
-    width: 100%;
+  text-align: center;
+  width: 100%;
 }
 
 .best-scores-table th {
-    padding: 5px;
-    text-transform: uppercase;
+  padding: 5px;
+  text-transform: uppercase;
 }
 
 .best-scores-table td {
-    padding: 5px;
+  padding: 5px;
 }
 /* Preferences */
 
 .preferences-settings label,
 .preferences-settings .label {
-    display: inline-block;
-    width: 49%;
+  display: inline-block;
+  width: 49%;
 }
 
 .preferences-settings input,
 .preferences-settings select {
-    background: transparent;
-    border: 2px solid #fff;
-    border-radius: 1000px;
-    box-sizing: border-box;
-    color: #fff;
-    padding: 7px 15px;
-    text-align: center;
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 1000px;
+  box-sizing: border-box;
+  color: #fff;
+  padding: 7px 15px;
+  text-align: center;
 }
 
 .preferences-settings input[type="number"] {
-    padding: 7px 10px;
-    width: 60px;
+  padding: 7px 10px;
+  width: 60px;
 }
 
 .preferences-settings input[type="color"] {
-    padding: 2px 5px;
+  padding: 2px 5px;
 }
 
 .preferences-settings select {
-    width: 49%;
+  width: 49%;
 }
 
 .preferences-settings select:active {
-    background: #fff;
-    color: #bbb;
+  background: #fff;
+  color: #bbb;
 }
 
 .preferences-settings fieldset {
-    border: 2px solid #ddd;
-    border-radius: 10px;
-    margin: 0 0 1em;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  margin: 0 0 1em;
 }
 
 .preferences-settings fieldset label {
-    width: 70%;
+  width: 70%;
 }
 
 .preferences-controls .button {
-    display: inline-block;
-    margin: 0 3%;
-    width: 30%;
+  display: inline-block;
+  margin: 0 3%;
+  width: 30%;
 }
 /* Game over */
 
 #game-is-over {
-    text-align: center;
+  text-align: center;
 }
 
 #game-is-over .score {
-    font-size: 6em;
+  font-size: 6em;
 }
 
 @media (min-width: 916px) {
-    #board {
-        float: left;
-    }
-    #players-info {
-        float: right;
-        margin-left: 20px;
-        width: 400px;
-    }
+  #board {
+    float: left;
+  }
+  #players-info {
+    float: right;
+    margin-left: 20px;
+    width: 400px;
+  }
 }

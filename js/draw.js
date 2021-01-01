@@ -18,32 +18,55 @@ var sounds = new Sounds();
 var preferences = new Preferences();
 
 function doClick(event) {
-    if (gameRunning) {
-        // if click on board
-        if (pointInRectangle(event.clientX - ui.offsetLeft, event.clientY - ui.offsetTop, 0, 0, board.cellColumns * board.cellWidth, board.cellRows * board.cellHeight)) {
-            var cell = board.checkCell(event.clientX - ui.offsetLeft, event.clientY - ui.offsetTop);
-            board.playerOnCell(cell[0], cell[1], 1);
-        }
+  if (gameRunning) {
+    // if click on board
+    if (
+      pointInRectangle(
+        event.clientX - ui.offsetLeft,
+        event.clientY - ui.offsetTop,
+        0,
+        0,
+        board.cellColumns * board.cellWidth,
+        board.cellRows * board.cellHeight
+      )
+    ) {
+      var cell = board.checkCell(
+        event.clientX - ui.offsetLeft,
+        event.clientY - ui.offsetTop
+      );
+      board.playerOnCell(cell[0], cell[1], 1);
     }
+  }
 }
 
 function doMoveMouse(event) {
-    if (gameRunning) {
-        // if click on board
-        if (pointInRectangle(event.clientX - ui.offsetLeft, event.clientY - ui.offsetTop, 0, 0, board.cellColumns * board.cellWidth, board.cellRows * board.cellHeight)) {
-            var cell = board.checkCell(event.clientX - ui.offsetLeft, event.clientY - ui.offsetTop);
-            board.mouseOverCell(cell[0], cell[1], 1);
-        }
+  if (gameRunning) {
+    // if click on board
+    if (
+      pointInRectangle(
+        event.clientX - ui.offsetLeft,
+        event.clientY - ui.offsetTop,
+        0,
+        0,
+        board.cellColumns * board.cellWidth,
+        board.cellRows * board.cellHeight
+      )
+    ) {
+      var cell = board.checkCell(
+        event.clientX - ui.offsetLeft,
+        event.clientY - ui.offsetTop
+      );
+      board.mouseOverCell(cell[0], cell[1], 1);
     }
+  }
 }
 
 // point x,y | rectangle a,b
 function pointInRectangle(x, y, ax, ay, bx, by) {
-    if (x > ax && x < bx &&
-        y > ay && y < by) return true;
-    return false;
+  if (x > ax && x < bx && y > ay && y < by) return true;
+  return false;
 }
 
 window.onresize = function (event) {
-    ui.drawBoard();
+  ui.drawBoard();
 };
